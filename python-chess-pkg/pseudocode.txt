@@ -1,0 +1,33 @@
+#For player vs CPU
+
+#notes#
+- how do we keep track of color specific legal moves? does the library do that?
+- 
+
+board.initialize()
+playerColor = rand(white,black)
+cpuColor = !playerColor
+if(playerColor == white):
+    while(!stalemate or !checkmate or !timeout or !resign)
+        while(!isLegalMove):
+            move = user_input()
+            if(move.isLegal()):
+                isLegalMove = True
+        move.push()
+        board.draw()
+        move = generateCPUMove()
+        sleep(someTime)
+        move.push()
+        board.draw()
+if(playerColor == black):
+    while(!stalemate or !checkmate or !timeout or !resign)
+        board.draw()
+        move = geerateCPUMove()
+        sleep(someTime)
+        move.push()
+        board.draw()
+        while(!isLegalMove):
+            move = user_input()
+            if(move.isLegal()):
+                isLegalMove = True
+        move.push()
