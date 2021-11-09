@@ -1,9 +1,3 @@
-'''
-make move = user input
-if move is legal, push()
-if not, ask for more input
-
-'''
 #used for the sleep functions to simulate the CPU taking time to move
 import time
 #the main chess library for move validation and gamestate checking
@@ -54,6 +48,8 @@ if(playerColor == 'W'):
             if(move in board.legal_moves):
                 isLegalMove = True
                 board.push(move)
+            else:
+                print('Illegal move!')
         print(board)
         print('')
         #generate a move for the CPU
@@ -103,6 +99,8 @@ if(playerColor == 'B'):
             if(move in board.legal_moves):
                 isLegalMove = True
                 board.push(move)    
+            else:
+                print('Illegal move!')
 
     '''
     placeholder for how we will send the board's character array out for gui processing
