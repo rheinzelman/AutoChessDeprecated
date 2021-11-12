@@ -15,7 +15,7 @@ def formatASCII(ASCIIBoard):
     #take the board object and make it a string
     #reformat it to be only piece and space characters
     #make a list with each element being an array from the board object string
-    reformattedASCII = str(board)
+    reformattedASCII = str(ASCIIBoard)
     reformattedASCII = reformattedASCII.replace(' ', '')
     reformattedASCII = reformattedASCII.replace('\n', '')
     charList = [char for char in reformattedASCII]
