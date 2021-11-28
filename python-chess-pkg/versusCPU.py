@@ -28,7 +28,7 @@ class CPUClass:
 
 	def pushCPUMove(self):
 		CPUMove = self.engine.play(self.board, chess.engine.Limit(time=0.1))
-		time.sleep(.35)
+		time.sleep(.1)
 		print('CPU move: ', end='')
 		print(CPUMove.move)
 		self.board.push(CPUMove.move)

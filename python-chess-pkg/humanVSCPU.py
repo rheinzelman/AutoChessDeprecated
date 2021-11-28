@@ -18,6 +18,8 @@ def startGame():
             break
         print('Please only enter W or B')
 
+    board = chess.Board()
+
     #keep track if the player has resigned
     resignFlag = False
 
@@ -99,12 +101,4 @@ def startGame():
                     board.push(move)    
                 else:
                     print('Illegal move!')
-
-        '''
-        placeholder for how we will send the board's character array out for gui processing
-        x= str(board)
-        x = split(x)
-        '''
-        
-    engine.quit()
-
+        engine.quit()        
