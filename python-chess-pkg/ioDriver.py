@@ -1,9 +1,3 @@
-import sys
-import os
-
-import humanVSCPU
-
-
 #helps us break the board's ascii output into a 2d array for gui and IO utilization
 def formatASCII(ASCIIBoard):
     #initialize an empty char array to represent the ascii board

@@ -1,10 +1,8 @@
 import pygame
-import sys
 import chess
-import time
 import math
 import ioDriver
-import versusCPU
+import gameEngine
 
 
 #PYGAME DEFS
@@ -14,7 +12,7 @@ SQ_SIZE = math.floor(height/dimensions) #size of each piece square
 IMAGES = {} #image dictionary for storing images in memory for faster loading
 
 #Gamemode variable, 'P' for pvp, 'W' for vs black cpu, 'B' for vs white cpu
-GAMEMODE = 'W'
+GAMEMODE = 'B'
 
 #create an array of pieces names,
 #in our image dictionary, define each piece to be the appropriate chess piece image loaded into mem
@@ -31,7 +29,7 @@ def main():
 	loadImages() #load all the chess images into mem
 	
 	#gamestate variables
-	game = versusCPU.chessEngine(GAMEMODE) #for now we are just initializing versusCPU game
+	game = gameEngine.chessEngine(GAMEMODE) #initialize the virtual game state
 	boardState = ioDriver.formatASCII(game.board) #create an array describing our boardstate
 	#keeps track of where a player has clicked and stores it in player move
 	playerClick = ()
@@ -72,6 +70,7 @@ def main():
 						playerClick = (col, row) #make a tuple playerClick and have it be the row and col
 						playerMove = playerMove + playerClick #make the playerMove tuple nest two playerClick tuples, which will represent the UCI move
 
+		#If gamemode is vs white CPU, and it is the CPU's turn, generate a cpu move and push it
 		if(GAMEMODE == 'B' and CPUTurn == True):
 			game.pushCPUMove()
 			boardState = ioDriver.formatASCII(game.board)
@@ -122,7 +121,7 @@ def drawSquares(screen):
 			color = colors[((r+c)%2)]
 			pygame.draw.rect(screen, color, pygame.Rect(c*SQ_SIZE,r*SQ_SIZE,SQ_SIZE,SQ_SIZE))
 
-#
+#draw pieces on the board
 def drawPieces(screen, boardState, isFlipped):
 	for r in range(dimensions):
 		for c in range(dimensions):
