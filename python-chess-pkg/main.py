@@ -11,8 +11,9 @@ dimensions = 8 #board dimensions
 SQ_SIZE = math.floor(height/dimensions) #size of each piece square
 IMAGES = {} #image dictionary for storing images in memory for faster loading
 
-#Gamemode variable, 'P' for pvp, 'W' for vs black cpu, 'B' for vs white cpu
-GAMEMODE = 'B'
+#Gamemode variables
+GAMEMODE = 'B' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
+CPU_DIFFICULTY = '1' #sets the difficulty of the stockfish engine, can be 1-10
 
 #create an array of pieces names,
 #in our image dictionary, define each piece to be the appropriate chess piece image loaded into mem
@@ -29,7 +30,7 @@ def main():
 	loadImages() #load all the chess images into mem
 	
 	#gamestate variables
-	game = gameEngine.chessEngine(GAMEMODE) #initialize the virtual game state
+	game = gameEngine.chessEngine(GAMEMODE, CPU_DIFFICULTY) #initialize the virtual game state
 	boardState = ioDriver.formatASCII(game.board) #create an array describing our boardstate
 	#keeps track of where a player has clicked and stores it in player move
 	playerClick = ()
@@ -80,15 +81,16 @@ def main():
 
 		#if a first square and second square has been clicked, reset playerMove and check if it's valid
 		if(len(playerMove) >= 4):
-			
+	
 			UCIMove = '' #initialize an empty string to store UCI moves
 			
 			#for every tuple in playerMove, convert it into a string and store in UCIMove
 			for item in playerMove:
 				UCIMove = UCIMove + str(item)
-			playerMove = () #make playerMove empty for future moves
 			#if pushPlayerMove returns false (invalid move), tell the player
-			if(game.pushPlayerMove(UCIMove) == False):
+			if((str(playerMove[0]) + str(playerMove[1])) == (str(playerMove[2]) + str(playerMove[3]))):
+				print('Deselecting move')
+			elif(game.pushPlayerMove(UCIMove) == False):
 				print('Illegal move!')
 			#otherwise, update the boardState array, use it to update the screen
 			#then generate a cpu move, and update the screen
@@ -100,6 +102,7 @@ def main():
 				if(GAMEMODE == 'W'):
 					game.pushCPUMove()
 					boardState = ioDriver.formatASCII(game.board)
+			playerMove = () #make playerMove empty for future moves
 
 		#update the screen
 		drawGameState(screen,boardState,isFlipped)

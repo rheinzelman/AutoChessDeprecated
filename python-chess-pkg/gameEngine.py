@@ -7,11 +7,12 @@ import chess.engine
 import ioDriver
 
 class chessEngine:
-	def __init__(self, GAMEMODE):
+	def __init__(self, GAMEMODE, CPU_DIFFICULTY):
 		self.board = chess.Board()
 		self.GAMEMODE = GAMEMODE
 		self.resignFlag = False
 		self.engine = chess.engine.SimpleEngine.popen_uci('src/stockfish')
+		self.engine.configure({"Skill Level": CPU_DIFFICULTY})
 
 	def pushPlayerMove(self, UCIMove):
 		isLegalMove = False
