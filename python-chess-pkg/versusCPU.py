@@ -6,10 +6,10 @@ import chess.engine
 
 import ioDriver
 
-class CPUClass:
-	def __init__(self, playerColor):
+class chessEngine:
+	def __init__(self, GAMEMODE):
 		self.board = chess.Board()
-		self.playerColor = playerColor
+		self.GAMEMODE = GAMEMODE
 		self.resignFlag = False
 		self.engine = chess.engine.SimpleEngine.popen_uci('src/stockfish')
 
@@ -23,12 +23,11 @@ class CPUClass:
 			print(self.board)
 			return True
 		else:
-			print('Illegal move!')
 			return False
 
 	def pushCPUMove(self):
 		CPUMove = self.engine.play(self.board, chess.engine.Limit(time=0.1))
-		time.sleep(.1)
+		time.sleep(.5)
 		print('CPU move: ', end='')
 		print(CPUMove.move)
 		self.board.push(CPUMove.move)
