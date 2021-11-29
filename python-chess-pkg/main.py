@@ -1,18 +1,25 @@
+#pygame: for window and gui creation, and board interactivity
 import pygame
+#chess: for move validation and match virtualization
 import chess
+#math: for basic math functions
 import math
+#time: for the illusion of the computer taking extra time to think
+import time
+#ioDriver.py: for communicating with the physical board's io and making the chess library output readable for the program
 import ioDriver
+#contains classes for utilizing chess library function calls
 import gameEngine
 
 
 #PYGAME DEFS
-size = width, height = 1024, 1024 #size is a tuple defined by the window height and width
+size = width, height = 640, 640 #size is a tuple defined by the window height and width
 dimensions = 8 #board dimensions
-SQ_SIZE = math.floor(height/dimensions) #size of each piece square
+SQUARE_SIZE = math.floor(height/dimensions) #size of each piece square
 IMAGES = {} #image dictionary for storing images in memory for faster loading
 
 #Gamemode variables
-GAMEMODE = 'W' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
+GAMEMODE = 'B' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
 CPU_DIFFICULTY = '1' #sets the difficulty of the stockfish engine, can be 1-10
 
 #create an array of pieces names,
@@ -20,7 +27,7 @@ CPU_DIFFICULTY = '1' #sets the difficulty of the stockfish engine, can be 1-10
 def loadImages():
 	pieces = ['b','k','n','p','q','r','B','K','N','P','Q','R']
 	for piece in pieces:
-		IMAGES[piece] = pygame.transform.scale(pygame.image.load('piece_images/' + piece + '.png'), (SQ_SIZE, SQ_SIZE))
+		IMAGES[piece] = pygame.transform.scale(pygame.image.load('piece_images/' + piece + '.png'), (SQUARE_SIZE, SQUARE_SIZE))
 
 def main(): 
 	
@@ -37,12 +44,16 @@ def main():
 	#stores 2 playerClicks and converts them into a UCI move
 	playerMove = ()
 	#Keeps track of turns when playing CPU
-	whiteTurn = False
+	whiteTurn = True
 	isFlipped = False
-	if(GAMEMODE == 'B' or GAMEMODE == 'P'):
-		whiteTurn = True
 	if(GAMEMODE == 'B'):
 		isFlipped = True
+
+	#display the initial boardstate before anyone makes a move
+	boardState = ioDriver.formatASCII(game.board)
+	drawGameState(screen,boardState,isFlipped)
+	pygame.display.flip()
+	time.sleep(.10)
 	
 	running = True #game loop condition
 
@@ -60,15 +71,15 @@ def main():
 					#if the gamemode is vs black cpu or it is white's turn, get the click position like normal
 					if(GAMEMODE == 'W' or (GAMEMODE == 'P' and whiteTurn == True)):
 						location = pygame.mouse.get_pos() #get the coords of the mouse position
-						col = chr(math.floor(location[0]/SQ_SIZE)+97) #translate the column position into a char, a-h
-						row = math.floor(9-location[1]/SQ_SIZE) #translate the row into a num, 1-9
+						col = chr(math.floor(location[0]/SQUARE_SIZE)+97) #translate the column position into a char, a-h
+						row = math.floor(9-location[1]/SQUARE_SIZE) #translate the row into a num, 1-9
 						playerClick = (col, row) #make a tuple playerClick and have it be the row and col
 						playerMove = playerMove + playerClick #make the playerMove tuple nest two playerClick tuples, which will represent the UCI move
 					#if the gamemode is vs white cpu or it is black's turn, flip the coordinate calculation
 					if(GAMEMODE == 'B' or (GAMEMODE == 'P' and whiteTurn == False)):
 						location = pygame.mouse.get_pos() #get the coords of the mouse position
-						col = chr(7-math.floor(location[0]/SQ_SIZE)+97) #translate the column position into a char, a-h
-						row = 9-math.floor(9-location[1]/SQ_SIZE) #translate the row into a num, 1-9
+						col = chr(7-math.floor(location[0]/SQUARE_SIZE)+97) #translate the column position into a char, a-h
+						row = 9-math.floor(9-location[1]/SQUARE_SIZE) #translate the row into a num, 1-9
 						playerClick = (col, row) #make a tuple playerClick and have it be the row and col
 						playerMove = playerMove + playerClick #make the playerMove tuple nest two playerClick tuples, which will represent the UCI move
 
@@ -78,6 +89,7 @@ def main():
 			boardState = ioDriver.formatASCII(game.board)
 			drawGameState(screen,boardState,isFlipped)
 			pygame.display.flip()
+			time.sleep(.10)
 			whiteTurn = False
 
 		#if a first square and second square has been clicked, reset playerMove and check if it's valid
@@ -124,22 +136,27 @@ def drawGameState(screen, boardState,isFlipped):
 
 #draw the squares on the board surface
 def drawSquares(screen):
-	colors = [pygame.Color('white'),pygame.Color(186, 214, 165)]
-	for r in range(dimensions):
-		for c in range(dimensions):
-			color = colors[((r+c)%2)]
-			pygame.draw.rect(screen, color, pygame.Rect(c*SQ_SIZE,r*SQ_SIZE,SQ_SIZE,SQ_SIZE))
+	altColor = False
+	colors = [pygame.Color('white'),pygame.Color(224, 116, 108)]
+	for row in range(dimensions):
+		altColor = not altColor
+		for col in range(dimensions):
+			if(altColor):
+				color = colors[0]
+			else: color = colors[1]
+			altColor = not altColor
+			pygame.draw.rect(screen, color, pygame.Rect(col*SQUARE_SIZE,row*SQUARE_SIZE,SQUARE_SIZE,SQUARE_SIZE))
 
 #draw pieces on the board
 def drawPieces(screen, boardState, isFlipped):
-	for r in range(dimensions):
-		for c in range(dimensions):
+	for row in range(dimensions):
+		for col in range(dimensions):
 			if(not isFlipped):
-				piece = boardState[r][c]
+				piece = boardState[row][col]
 			if(isFlipped):
-				piece = boardState[7-r][7-c]
+				piece = boardState[7-row][7-col]
 			if piece != '.':
-				screen.blit(IMAGES[piece], pygame.Rect(c*SQ_SIZE,r*SQ_SIZE,SQ_SIZE,SQ_SIZE))
+				screen.blit(IMAGES[piece], pygame.Rect(col*SQUARE_SIZE,row*SQUARE_SIZE,SQUARE_SIZE,SQUARE_SIZE))
 
 if __name__ == '__main__':
 	main()
