@@ -43,3 +43,5 @@ class chessEngine:
 		else:
 			return False
 
+	def quitEngine(self):
+		self.engine.quit()
