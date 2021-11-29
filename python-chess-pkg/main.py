@@ -12,7 +12,7 @@ SQ_SIZE = math.floor(height/dimensions) #size of each piece square
 IMAGES = {} #image dictionary for storing images in memory for faster loading
 
 #Gamemode variables
-GAMEMODE = 'B' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
+GAMEMODE = 'W' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
 CPU_DIFFICULTY = '1' #sets the difficulty of the stockfish engine, can be 1-10
 
 #create an array of pieces names,
@@ -37,10 +37,11 @@ def main():
 	#stores 2 playerClicks and converts them into a UCI move
 	playerMove = ()
 	#Keeps track of turns when playing CPU
-	CPUTurn = False
+	whiteTurn = False
 	isFlipped = False
+	if(GAMEMODE == 'B' or GAMEMODE == 'P'):
+		whiteTurn = True
 	if(GAMEMODE == 'B'):
-		CPUTurn = True
 		isFlipped = True
 	
 	running = True #game loop condition
@@ -57,14 +58,14 @@ def main():
 				#if there is a mouseclick
 				elif e.type == pygame.MOUSEBUTTONDOWN: 
 					#if the gamemode is vs black cpu or it is white's turn, get the click position like normal
-					if(GAMEMODE == 'W'):
+					if(GAMEMODE == 'W' or (GAMEMODE == 'P' and whiteTurn == True)):
 						location = pygame.mouse.get_pos() #get the coords of the mouse position
 						col = chr(math.floor(location[0]/SQ_SIZE)+97) #translate the column position into a char, a-h
 						row = math.floor(9-location[1]/SQ_SIZE) #translate the row into a num, 1-9
 						playerClick = (col, row) #make a tuple playerClick and have it be the row and col
 						playerMove = playerMove + playerClick #make the playerMove tuple nest two playerClick tuples, which will represent the UCI move
 					#if the gamemode is vs white cpu or it is black's turn, flip the coordinate calculation
-					if(GAMEMODE == 'B'):
+					if(GAMEMODE == 'B' or (GAMEMODE == 'P' and whiteTurn == False)):
 						location = pygame.mouse.get_pos() #get the coords of the mouse position
 						col = chr(7-math.floor(location[0]/SQ_SIZE)+97) #translate the column position into a char, a-h
 						row = 9-math.floor(9-location[1]/SQ_SIZE) #translate the row into a num, 1-9
@@ -72,12 +73,12 @@ def main():
 						playerMove = playerMove + playerClick #make the playerMove tuple nest two playerClick tuples, which will represent the UCI move
 
 		#If gamemode is vs white CPU, and it is the CPU's turn, generate a cpu move and push it
-		if(GAMEMODE == 'B' and CPUTurn == True):
+		if(GAMEMODE == 'B' and whiteTurn == True):
 			game.pushCPUMove()
 			boardState = ioDriver.formatASCII(game.board)
 			drawGameState(screen,boardState,isFlipped)
 			pygame.display.flip()
-			CPUTurn = False
+			whiteTurn = False
 
 		#if a first square and second square has been clicked, reset playerMove and check if it's valid
 		if(len(playerMove) >= 4):
@@ -98,11 +99,16 @@ def main():
 				boardState = ioDriver.formatASCII(game.board)
 				drawGameState(screen,boardState,isFlipped)
 				pygame.display.flip()
-				CPUTurn = True
+				if(GAMEMODE == 'B'):
+					whiteTurn = not whiteTurn
 				if(GAMEMODE == 'W'):
 					game.pushCPUMove()
 					boardState = ioDriver.formatASCII(game.board)
+				if(GAMEMODE == 'P'):
+					isFlipped = not isFlipped
+					whiteTurn = not whiteTurn
 			playerMove = () #make playerMove empty for future moves
+			print('whiteTurn: ' + str(whiteTurn))
 
 		#update the screen
 		drawGameState(screen,boardState,isFlipped)
