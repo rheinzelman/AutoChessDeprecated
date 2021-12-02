@@ -25,30 +25,25 @@ class MainMenu:
         is_running = True
 
         while is_running:
-            is_running = self.loop()
+            is_running = True
+            time_delta = self.clock.tick(60) / 1000.0
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    is_running = False
 
-    def loop(self):
-        is_running = True
-        time_delta = self.clock.tick(60) / 1000.0
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                is_running = False
+                if event.type == pygame.USEREVENT:
+                    if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
+                        if event.ui_element == self.start_button:
+                            print('Start Game')
+                        if event.ui_element == self.quit_button:
+                            print('Quit Game')
+                            is_running = False
 
-            if event.type == pygame.USEREVENT:
-                if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
-                    if event.ui_element == self.start_button:
-                        print('Start Game')
-                    if event.ui_element == self.quit_button:
-                        print('Quit Game')
-                        is_running = False
+                self.manager.process_events(event)
 
-            self.manager.process_events(event)
+            self.manager.update(time_delta)
 
-        self.manager.update(time_delta)
+            # self.window_surface.blit(self.background, (0, 0))
+            self.manager.draw_ui(self.window_surface)
 
-        # self.window_surface.blit(self.background, (0, 0))
-        self.manager.draw_ui(self.window_surface)
-
-        pygame.display.update()
-
-        return is_running
+            pygame.display.update()
