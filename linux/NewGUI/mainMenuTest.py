@@ -1,6 +1,5 @@
 import pygame
-import pygame_gui
-import mainMenu
+import GUI_MainMenu
 
 
 activeUI = None
@@ -13,7 +12,7 @@ def main():
 
     window_surface = pygame.display.set_mode((800, 600))
 
-    local = mainMenu.MainMenu(window_surface)
+    local = GUI_MainMenu.MainMenu(window_surface)
 
 
 if __name__ == '__main__':
