@@ -18,22 +18,22 @@ dimensions = 8 #board dimensions, don't change because offsets for flipping and 
 SQUARE_SIZE = math.floor(height/dimensions) #size of each piece square
 #image dictionary for storing images in memory for faster loading
 IMAGES = {
-	'b': pygame.transform.scale(pygame.image.load('piece_images/b.png'), (SQUARE_SIZE, SQUARE_SIZE)),
-	'k': pygame.transform.scale(pygame.image.load('piece_images/k.png'), (SQUARE_SIZE, SQUARE_SIZE)),
-	'n': pygame.transform.scale(pygame.image.load('piece_images/n.png'), (SQUARE_SIZE, SQUARE_SIZE)),
-	'p': pygame.transform.scale(pygame.image.load('piece_images/p.png'), (SQUARE_SIZE, SQUARE_SIZE)),
-	'q': pygame.transform.scale(pygame.image.load('piece_images/q.png'), (SQUARE_SIZE, SQUARE_SIZE)),
-	'r': pygame.transform.scale(pygame.image.load('piece_images/r.png'), (SQUARE_SIZE, SQUARE_SIZE)),
-	'B': pygame.transform.scale(pygame.image.load('piece_images/B.png'), (SQUARE_SIZE, SQUARE_SIZE)),
-	'K': pygame.transform.scale(pygame.image.load('piece_images/K.png'), (SQUARE_SIZE, SQUARE_SIZE)),
-	'N': pygame.transform.scale(pygame.image.load('piece_images/N.png'), (SQUARE_SIZE, SQUARE_SIZE)),
-	'P': pygame.transform.scale(pygame.image.load('piece_images/P.png'), (SQUARE_SIZE, SQUARE_SIZE)),
-	'Q': pygame.transform.scale(pygame.image.load('piece_images/Q.png'), (SQUARE_SIZE, SQUARE_SIZE)),
-	'R': pygame.transform.scale(pygame.image.load('piece_images/R.png'), (SQUARE_SIZE, SQUARE_SIZE))
+	'b': pygame.transform.scale(pygame.image.load('piece_images/b.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
+	'k': pygame.transform.scale(pygame.image.load('piece_images/k.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
+	'n': pygame.transform.scale(pygame.image.load('piece_images/n.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
+	'p': pygame.transform.scale(pygame.image.load('piece_images/p.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
+	'q': pygame.transform.scale(pygame.image.load('piece_images/q.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
+	'r': pygame.transform.scale(pygame.image.load('piece_images/r.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
+	'B': pygame.transform.scale(pygame.image.load('piece_images/B.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
+	'K': pygame.transform.scale(pygame.image.load('piece_images/K.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
+	'N': pygame.transform.scale(pygame.image.load('piece_images/N.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
+	'P': pygame.transform.scale(pygame.image.load('piece_images/P.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
+	'Q': pygame.transform.scale(pygame.image.load('piece_images/Q.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
+	'R': pygame.transform.scale(pygame.image.load('piece_images/R.svg'), (SQUARE_SIZE, SQUARE_SIZE))
 }
 
 #Gamemode variables
-GAMEMODE = 'B' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
+GAMEMODE = 'P' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
 CPU_DIFFICULTY = '10' #sets the difficulty of the stockfish engine, can be 1-10
 
 def main(): 
@@ -62,7 +62,7 @@ def main():
 	
 	running = True #game loop condition
 
-	while running:
+	while running and not game.board.is_game_over():
 		
 		#wait for an event to happen
 		for e in pygame.event.get():
@@ -138,6 +138,7 @@ def main():
 		#drawGameState(window,boardState,isFlipped)
 		#pygame.display.flip()
 
+	print(game.board.outcome())
 	print("Quitting...")
 	#when exiting the game loop, quit pygame
 	pygame.quit()

@@ -11,7 +11,7 @@ class chessEngine:
 		self.board = chess.Board()
 		self.GAMEMODE = GAMEMODE
 		self.resignFlag = False
-		self.engine = chess.engine.SimpleEngine.popen_uci('stockfish/stockfish.exe')
+		self.engine = chess.engine.SimpleEngine.popen_uci('src/stockfish')
 		self.engine.configure({"Skill Level": CPU_DIFFICULTY})
 
 	def pushPlayerMove(self, UCIMove):
