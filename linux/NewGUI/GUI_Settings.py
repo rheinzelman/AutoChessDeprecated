@@ -10,7 +10,6 @@ class SettingsMenu:
 
         self.clock = pygame.time.Clock()
         self.window_surface = pygame.display.set_mode((800, 600))
-        # self.window_surface = window
 
         self.background = pygame.Surface((800, 600))
         self.background.fill(pygame.Color('lightcoral'))

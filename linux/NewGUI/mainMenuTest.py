@@ -7,7 +7,7 @@ def main():
 
     pygame.display.set_caption('Quick Start')
 
-    local = GUI_MainMenu.MainMenu()
+    GUI_MainMenu.MainMenu()
 
 
 if __name__ == '__main__':
