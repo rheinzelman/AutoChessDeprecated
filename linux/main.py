@@ -13,9 +13,10 @@ import gameEngine
 
 
 #PYGAME DEFS
-size = width, height = 640, 640 #size is a tuple defined by the window height and width
+WINDOW_SIZE = W_width, W_height = 840, 640 #size is a tuple defined by the window height and width
+BOARD_SIZE = B_width, B_height = 640, 640
 dimensions = 8 #board dimensions, don't change because offsets for flipping and char conversion are hardcoded
-SQUARE_SIZE = math.floor(height/dimensions) #size of each piece square
+SQUARE_SIZE = math.floor(B_height/dimensions) #size of each piece square
 #image dictionary for storing images in memory for faster loading
 IMAGES = {
 	'b': pygame.transform.scale(pygame.image.load('piece_images/b.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
@@ -33,13 +34,15 @@ IMAGES = {
 }
 
 #Gamemode variables
-GAMEMODE = 'P' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
+GAMEMODE = 'W' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
 CPU_DIFFICULTY = '10' #sets the difficulty of the stockfish engine, can be 1-10
 
 def main(): 
+
+	print('')
 	
 	pygame.init() #initialize pygame
-	window = pygame.display.set_mode(size) #set the windows size
+	window = pygame.display.set_mode(WINDOW_SIZE) #set the windows size
 	window.fill(pygame.Color('black')) #the window background color	
 
 	#gamestate variables
@@ -132,12 +135,8 @@ def main():
 					whiteTurn = not whiteTurn
 					drawGameState(window, boardState, isFlipped)
 			playerMove = () #make playerMove empty for future moves
-			print('whiteTurn: ' + str(whiteTurn))
 
-		#update the window
-		#drawGameState(window,boardState,isFlipped)
-		#pygame.display.flip()
-
+	print(game.moveLog)
 	print(game.board.outcome())
 	print("Quitting...")
 	#when exiting the game loop, quit pygame
@@ -149,6 +148,7 @@ def main():
 def drawGameState(window, boardState,isFlipped):
 	drawSquares(window)
 	drawPieces(window, boardState, isFlipped)
+	drawUI(window, 'moveLog', 'capturedPieces')
 	pygame.display.flip()
 
 #draw squares of alternating color on the board surface by drawing a rectangle of SQUARE_SIZE
@@ -177,9 +177,11 @@ def drawPieces(window, boardState, isFlipped):
 			if piece != '.':
 				window.blit(IMAGES[piece], pygame.Rect(col*SQUARE_SIZE,row*SQUARE_SIZE,SQUARE_SIZE,SQUARE_SIZE))
 
+def drawUI(window, moveLog, capturedPieces):
+	UIPos = (W_width-(W_width - B_width), 0)
+	pygame.draw.rect(window, (77,77,77), pygame.Rect(UIPos[0],UIPos[1],W_width-B_width,W_height))
+
 def highlightSquare(window, boardState, isFlipped, col, row):
-	print('row: ' + str(row))
-	print('col: ' + str(col))
 	pygame.draw.rect(window, pygame.Color(252, 189, 53), pygame.Rect(col*SQUARE_SIZE, row*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 	drawPieces(window, boardState, isFlipped)
 	pygame.display.flip()

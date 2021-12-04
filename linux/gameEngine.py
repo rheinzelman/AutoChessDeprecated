@@ -13,6 +13,7 @@ class chessEngine:
 		self.resignFlag = False
 		self.engine = chess.engine.SimpleEngine.popen_uci('src/stockfish')
 		self.engine.configure({"Skill Level": CPU_DIFFICULTY})
+		self.moveLog = []
 
 	def pushPlayerMove(self, UCIMove):
 		isLegalMove = False
@@ -22,6 +23,7 @@ class chessEngine:
 			isLegalMove = True
 			self.board.push(move)
 			print(self.board)
+			self.moveLog.append(UCIMove + ', ')
 			return True
 		else:
 			return False
@@ -33,6 +35,7 @@ class chessEngine:
 		print(CPUMove.move)
 		self.board.push(CPUMove.move)
 		print(self.board)
+		self.moveLog.append(str(CPUMove.move) + ', ')
 
 	def isLegal(self, UCIMove):
 		print("UCI Move: ", end='')
