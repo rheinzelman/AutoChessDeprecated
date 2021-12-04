@@ -16,9 +16,9 @@ import gameEngine
 BOARD_SIZE = B_width, B_height = 640, 640
 PANEL_SIZE = P_width, P_height = 350, 640
 WINDOW_SIZE = W_width, W_height = B_width + P_width, 640 #size is a tuple defined by the window height and width
-
 dimensions = 8 #board dimensions, don't change because offsets for flipping and char conversion are hardcoded
 SQUARE_SIZE = math.floor(B_height/dimensions) #size of each piece square
+
 #image dictionary for storing images in memory for faster loading
 IMAGES = {
 	'b': pygame.transform.scale(pygame.image.load('piece_images/b.svg'), (SQUARE_SIZE, SQUARE_SIZE)),
@@ -40,8 +40,6 @@ GAMEMODE = 'P' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs whi
 CPU_DIFFICULTY = '10' #sets the difficulty of the stockfish engine, can be 1-10
 
 def main(): 
-
-	print('')
 	
 	pygame.init() #initialize pygame
 	window = pygame.display.set_mode(WINDOW_SIZE) #set the windows size
@@ -142,7 +140,7 @@ def main():
 				if(GAMEMODE == 'P'):
 					isFlipped = not isFlipped
 					whiteTurn = not whiteTurn
-					#flipTransition(window)
+					flipTransition(window)
 					drawGameState(window, game, boardState, isFlipped)
 			playerMove = () #make playerMove empty for future moves
 
@@ -195,14 +193,15 @@ def drawLog(window, game, logList):
 	pygame.draw.rect(window, (57,57,57), moveLogContainer)
 	moveLog = game.moveLog
 	movesPerRow = 4
-
 	padding = 5
 	newLineSpacing = padding
 	for i in range(0, len(moveLog), movesPerRow):
-
 		text = ''
 		for j in range(movesPerRow):
 			if i + j < len(moveLog):
+				if((i+j)%2 == 0):
+					#this line adds the move number to the beginning of every 2 elements in moveLog
+					text += str(math.ceil((i+j+1)/2)) + '.'
 				text += moveLog[i+j]
 		moveText = font.render(text, True, (200,200,200))
 		moveTextLocation = moveLogContainer.move(padding,newLineSpacing)
@@ -224,10 +223,10 @@ def highlightSquare(window, boardState, isFlipped, col, row):
 
 #a small fade to black will occur when flipping the board
 def flipTransition(window):
-	time.sleep(.5)
+	time.sleep(.25)
 	pygame.draw.rect(window, (0,0,0), pygame.Rect(0,0,B_width,B_height))
 	pygame.display.flip()
-	time.sleep(.5)
+	time.sleep(.25)
 
 def endgameScreen(window, game):
 	pygame.draw.rect(window, (255,255,255), pygame.Rect(0,0,W_width,W_height))
