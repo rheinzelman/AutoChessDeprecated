@@ -13,8 +13,10 @@ import gameEngine
 
 
 #PYGAME DEFS
-WINDOW_SIZE = W_width, W_height = 840, 640 #size is a tuple defined by the window height and width
 BOARD_SIZE = B_width, B_height = 640, 640
+PANEL_SIZE = P_width, P_height = 350, 640
+WINDOW_SIZE = W_width, W_height = B_width + P_width, 640 #size is a tuple defined by the window height and width
+
 dimensions = 8 #board dimensions, don't change because offsets for flipping and char conversion are hardcoded
 SQUARE_SIZE = math.floor(B_height/dimensions) #size of each piece square
 #image dictionary for storing images in memory for faster loading
@@ -44,6 +46,7 @@ def main():
 	pygame.init() #initialize pygame
 	window = pygame.display.set_mode(WINDOW_SIZE) #set the windows size
 	window.fill(pygame.Color('black')) #the window background color	
+	pygame.font.init()
 
 	#gamestate variables
 	game = gameEngine.chessEngine(GAMEMODE, CPU_DIFFICULTY) #initialize the virtual game state
@@ -60,7 +63,11 @@ def main():
 
 	#display the initial boardstate before anyone makes a move
 	boardState = ioDriver.formatASCII(game.board)
-	drawGameState(window,boardState,isFlipped)
+	drawGameState(window,game,boardState,isFlipped)
+	pygame.display.flip()
+
+
+
 	time.sleep(.10)
 	
 	running = True #game loop condition
@@ -76,9 +83,14 @@ def main():
 				
 				#if there is a mouseclick
 				elif e.type == pygame.MOUSEBUTTONDOWN: 
+					
+					location = pygame.mouse.get_pos() #get the coords of the mouse position
+					
+					#if the click is NOT on the board, then do nothing
+					if(location[0] > B_width or location[1] > B_height):
+						break
 					#if the gamemode is vs black cpu or it is white's turn, get the click position like normal
 					if(GAMEMODE == 'W' or (GAMEMODE == 'P' and whiteTurn == True)):
-						location = pygame.mouse.get_pos() #get the coords of the mouse position
 						col = chr(math.floor(location[0]/SQUARE_SIZE)+97) #translate the column position into a char, a-h
 						row = math.floor(9-location[1]/SQUARE_SIZE) #translate the row into a num, 1-9
 						playerClick = (col, row) #make a tuple playerClick and have it be the row and col
@@ -86,7 +98,6 @@ def main():
 						playerMove = playerMove + playerClick #make the playerMove tuple nest two playerClick tuples, which will represent the UCI move
 					#if the gamemode is vs white cpu or it is black's turn, flip the coordinate calculation
 					if(GAMEMODE == 'B' or (GAMEMODE == 'P' and whiteTurn == False)):
-						location = pygame.mouse.get_pos() #get the coords of the mouse position
 						col = chr(7-math.floor(location[0]/SQUARE_SIZE)+97) #translate the column position into a char, a-h
 						row = 9-math.floor(9-location[1]/SQUARE_SIZE) #translate the row into a num, 1-9
 						playerClick = (col, row) #make a tuple playerClick and have it be the row and col
@@ -99,7 +110,7 @@ def main():
 		if(GAMEMODE == 'B' and whiteTurn == True):
 			game.pushCPUMove()
 			boardState = ioDriver.formatASCII(game.board)
-			drawGameState(window,boardState,isFlipped)
+			drawGameState(window,game,boardState,isFlipped)
 			time.sleep(.10)
 			whiteTurn = False
 
@@ -107,7 +118,7 @@ def main():
 		if(len(playerMove) >= 4):
 	
 			#drawing the gamestate when there is a complete set of playerMove deletes any highlighted squares
-			drawGameState(window, boardState, isFlipped)
+			drawGameState(window, game, boardState, isFlipped)
 
 			UCIMove = '' #initialize an empty string to store UCI moves
 			
@@ -123,20 +134,21 @@ def main():
 			#then generate a cpu move, and update the window
 			else:
 				boardState = ioDriver.formatASCII(game.board)
-				drawGameState(window,boardState,isFlipped)
+				drawGameState(window,game,boardState,isFlipped)
 				if(GAMEMODE == 'B'):
 					whiteTurn = not whiteTurn
 				if(GAMEMODE == 'W'):
 					game.pushCPUMove()
 					boardState = ioDriver.formatASCII(game.board)
-					drawGameState(window, boardState, isFlipped)					
+					drawGameState(window, game, boardState, isFlipped)					
 				if(GAMEMODE == 'P'):
 					isFlipped = not isFlipped
 					whiteTurn = not whiteTurn
-					drawGameState(window, boardState, isFlipped)
+					drawGameState(window, game, boardState, isFlipped)
 			playerMove = () #make playerMove empty for future moves
 
-	print(game.moveLog)
+	print('Move Log: ' + game.getMoveLog())
+	print(game.getLastMove())
 	print(game.board.outcome())
 	print("Quitting...")
 	#when exiting the game loop, quit pygame
@@ -145,10 +157,10 @@ def main():
 	game.quitEngine()
 
 #update the board by calling drawSquares and drawPieces
-def drawGameState(window, boardState,isFlipped):
+def drawGameState(window, game, boardState, isFlipped):
 	drawSquares(window)
 	drawPieces(window, boardState, isFlipped)
-	drawUI(window, 'moveLog', 'capturedPieces')
+	drawUI(window, game, 'moveLog', 'capturedPieces')
 	pygame.display.flip()
 
 #draw squares of alternating color on the board surface by drawing a rectangle of SQUARE_SIZE
@@ -177,15 +189,35 @@ def drawPieces(window, boardState, isFlipped):
 			if piece != '.':
 				window.blit(IMAGES[piece], pygame.Rect(col*SQUARE_SIZE,row*SQUARE_SIZE,SQUARE_SIZE,SQUARE_SIZE))
 
-def drawUI(window, moveLog, capturedPieces):
+def drawLog(window, game, logList):
+	font = pygame.font.SysFont('ubuntumono', 30)
+	moveLogContainer = pygame.Rect(B_width, 0, P_width, P_height/2)
+	pygame.draw.rect(window, (57,57,57), moveLogContainer)
+	moveLog = game.moveLog
+	for i in range(0, len(moveLog), 2):
+		pass
+
+	padding = 5
+	newLineSpacing = padding
+	for i in range(len(moveLog)):
+		text = moveLog[i]
+		moveText = font.render(text, True, (255,0,0))
+		moveTextLocation = moveLogContainer.move(padding,newLineSpacing)
+		window.blit(moveText,moveTextLocation)
+		newLineSpacing += moveText.get_height() + 2
+
+def drawUI(window, game, moveLog, capturedPieces):
 	UIPos = (W_width-(W_width - B_width), 0)
-	pygame.draw.rect(window, (77,77,77), pygame.Rect(UIPos[0],UIPos[1],W_width-B_width,W_height))
+	
+	sidebar = pygame.Rect(UIPos[0],UIPos[1],W_width-B_width,W_height)
+	pygame.draw.rect(window, (175,175,175), sidebar)
+
+	drawLog(window, game, 'test')
 
 def highlightSquare(window, boardState, isFlipped, col, row):
 	pygame.draw.rect(window, pygame.Color(252, 189, 53), pygame.Rect(col*SQUARE_SIZE, row*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 	drawPieces(window, boardState, isFlipped)
 	pygame.display.flip()
-
 
 if __name__ == '__main__':
 	main()

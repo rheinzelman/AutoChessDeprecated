@@ -46,5 +46,14 @@ class chessEngine:
 		else:
 			return False
 
+	def getMoveLog(self):
+		logString = ''
+		for move in range(len(self.moveLog)):
+			logString = logString + self.moveLog[move]
+		return logString
+
+	def getLastMove(self):
+		return self.moveLog[len(self.moveLog)-1]
+
 	def quitEngine(self):
 		self.engine.quit()
