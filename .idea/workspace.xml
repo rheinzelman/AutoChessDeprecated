@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c87725f-ed6a-477a-a2fe-8e1a1aa06166" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/linux/NewGUI/GUI_Settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/linux/NewGUI/GUI_VSChessBot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/NewGUI/GUI_MainMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/linux/NewGUI/GUI_MainMenu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/NewGUI/mainMenuTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/linux/NewGUI/mainMenuTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/NewGUI/GUI_VSChessBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/linux/NewGUI/GUI_VSChessBot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
