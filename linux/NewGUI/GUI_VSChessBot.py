@@ -6,7 +6,7 @@ class VersusCPU:
     def __init__(self):
         self.clock = pygame.time.Clock()
 
-        self.window_surface = pygame.display.set_mode((640, 840))
+        self.window_surface = pygame.display.set_mode((640, 940))
 
         self.manager = pygame_gui.UIManager((640, 1000))
 
@@ -19,7 +19,7 @@ class VersusCPU:
         self.top_bar = pygame.Surface((640, 100))
         self.top_bar.fill(pygame.Color('lightcoral'))
 
-        self.bottom_bar = pygame.Surface((720, 100))
+        self.bottom_bar = pygame.Surface((720, 200))
         self.bottom_bar.fill(pygame.Color('lightcoral'))
 
         WHITE = (255, 255, 255)
