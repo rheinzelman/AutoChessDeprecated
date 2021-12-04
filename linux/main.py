@@ -187,7 +187,7 @@ def drawPieces(window, boardState, isFlipped):
 			if piece != '.':
 				window.blit(IMAGES[piece], pygame.Rect(col*SQUARE_SIZE,row*SQUARE_SIZE,SQUARE_SIZE,SQUARE_SIZE))
 
-def drawLog(window, game, logList):
+def drawLog(window, game):
 	font = pygame.font.SysFont('ubuntumono', 25)
 	moveLogContainer = pygame.Rect(B_width, 0, P_width, P_height/2)
 	pygame.draw.rect(window, (57,57,57), moveLogContainer)
@@ -209,12 +209,16 @@ def drawLog(window, game, logList):
 		newLineSpacing += moveText.get_height() + 2
 
 def drawUI(window, game, moveLog, capturedPieces):
-	UIPos = (W_width-(W_width - B_width), 0)
-	
-	sidebar = pygame.Rect(UIPos[0],UIPos[1],W_width-B_width,W_height)
-	pygame.draw.rect(window, (175,175,175), sidebar)
 
-	drawLog(window, game, 'test')
+	padding = 20
+
+	sidebar = pygame.Rect(B_width,0,W_width-B_width,W_height)
+	pygame.draw.rect(window, (57,57,57), sidebar)
+	drawLog(window, game)
+	resignButton = pygame.Rect((B_width+padding,(P_height/2)+padding, P_width*.4, P_height*.1))
+	pygame.draw.rect(window, (255,0,0), resignButton, 0, 9)
+	drawButton = pygame.Rect(W_width-resignButton.w-padding, (P_height/2)+padding, P_width*.4,P_height*.1)
+	pygame.draw.rect(window, (255,0,0), drawButton, 0, 9)
 
 def highlightSquare(window, boardState, isFlipped, col, row):
 	pygame.draw.rect(window, pygame.Color(252, 189, 53), pygame.Rect(col*SQUARE_SIZE, row*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
