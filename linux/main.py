@@ -36,7 +36,7 @@ IMAGES = {
 }
 
 #Gamemode variables
-GAMEMODE = 'W' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
+GAMEMODE = 'P' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
 CPU_DIFFICULTY = '10' #sets the difficulty of the stockfish engine, can be 1-10
 
 def main(): 
@@ -101,8 +101,6 @@ def main():
 						col = chr(7-math.floor(location[0]/SQUARE_SIZE)+97) #translate the column position into a char, a-h
 						row = 9-math.floor(9-location[1]/SQUARE_SIZE) #translate the row into a num, 1-9
 						playerClick = (col, row) #make a tuple playerClick and have it be the row and col
-						print('col: ' + str(col))
-						print('row: ' + str(row))
 						highlightSquare(window, boardState, isFlipped, math.floor((location[0]/SQUARE_SIZE)), row-1)
 						playerMove = playerMove + playerClick #make the playerMove tuple nest two playerClick tuples, which will represent the UCI move
 
@@ -144,12 +142,14 @@ def main():
 				if(GAMEMODE == 'P'):
 					isFlipped = not isFlipped
 					whiteTurn = not whiteTurn
+					#flipTransition(window)
 					drawGameState(window, game, boardState, isFlipped)
 			playerMove = () #make playerMove empty for future moves
 
+	endgameScreen(window, game)
+
 	print('Move Log: ' + game.getMoveLog())
-	print(game.getLastMove())
-	print(game.board.outcome())
+	print('Winner: ' + game.getWinner())
 	print("Quitting...")
 	#when exiting the game loop, quit pygame
 	pygame.quit()
@@ -190,18 +190,21 @@ def drawPieces(window, boardState, isFlipped):
 				window.blit(IMAGES[piece], pygame.Rect(col*SQUARE_SIZE,row*SQUARE_SIZE,SQUARE_SIZE,SQUARE_SIZE))
 
 def drawLog(window, game, logList):
-	font = pygame.font.SysFont('ubuntumono', 30)
+	font = pygame.font.SysFont('ubuntumono', 25)
 	moveLogContainer = pygame.Rect(B_width, 0, P_width, P_height/2)
 	pygame.draw.rect(window, (57,57,57), moveLogContainer)
 	moveLog = game.moveLog
-	for i in range(0, len(moveLog), 2):
-		pass
+	movesPerRow = 4
 
 	padding = 5
 	newLineSpacing = padding
-	for i in range(len(moveLog)):
-		text = moveLog[i]
-		moveText = font.render(text, True, (255,0,0))
+	for i in range(0, len(moveLog), movesPerRow):
+
+		text = ''
+		for j in range(movesPerRow):
+			if i + j < len(moveLog):
+				text += moveLog[i+j]
+		moveText = font.render(text, True, (200,200,200))
 		moveTextLocation = moveLogContainer.move(padding,newLineSpacing)
 		window.blit(moveText,moveTextLocation)
 		newLineSpacing += moveText.get_height() + 2
@@ -218,6 +221,22 @@ def highlightSquare(window, boardState, isFlipped, col, row):
 	pygame.draw.rect(window, pygame.Color(252, 189, 53), pygame.Rect(col*SQUARE_SIZE, row*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 	drawPieces(window, boardState, isFlipped)
 	pygame.display.flip()
+
+#a small fade to black will occur when flipping the board
+def flipTransition(window):
+	time.sleep(.5)
+	pygame.draw.rect(window, (0,0,0), pygame.Rect(0,0,B_width,B_height))
+	pygame.display.flip()
+	time.sleep(.5)
+
+def endgameScreen(window, game):
+	pygame.draw.rect(window, (255,255,255), pygame.Rect(0,0,W_width,W_height))
+	
+	font = pygame.font.SysFont('ubuntumono', 50)
+	outcomeText = font.render(game.getWinner() + ' Won!', True, (0,0,0))
+	window.blit(outcomeText,((W_width/2)-outcomeText.get_width()/2,(W_height/2)-outcomeText.get_height()))
+	pygame.display.flip()
+	time.sleep(5)
 
 if __name__ == '__main__':
 	main()
