@@ -13,9 +13,9 @@ import gameEngine
 
 
 #PYGAME DEFS
-BOARD_SIZE = B_width, B_height = 640, 640
-PANEL_SIZE = P_width, P_height = 350, 640
-WINDOW_SIZE = W_width, W_height = B_width + P_width, 640 #size is a tuple defined by the window height and width
+BOARD_SIZE = B_width, B_height = 920, 920
+PANEL_SIZE = P_width, P_height = 350, 920
+WINDOW_SIZE = W_width, W_height = B_width + P_width, 920 #size is a tuple defined by the window height and width
 dimensions = 8 #board dimensions, don't change because offsets for flipping and char conversion are hardcoded
 SQUARE_SIZE = math.floor(B_height/dimensions) #size of each piece square
 
@@ -223,14 +223,14 @@ def highlightSquare(window, boardState, isFlipped, col, row):
 
 #a small fade to black will occur when flipping the board
 def flipTransition(window):
-	time.sleep(.25)
+	time.sleep(.5)
 	pygame.draw.rect(window, (0,0,0), pygame.Rect(0,0,B_width,B_height))
 	pygame.display.flip()
 	time.sleep(.25)
 
 def endgameScreen(window, game):
 	pygame.draw.rect(window, (255,255,255), pygame.Rect(0,0,W_width,W_height))
-	
+
 	font = pygame.font.SysFont('ubuntumono', 50)
 	outcomeText = font.render(game.getWinner() + ' Won!', True, (0,0,0))
 	window.blit(outcomeText,((W_width/2)-outcomeText.get_width()/2,(W_height/2)-outcomeText.get_height()))
