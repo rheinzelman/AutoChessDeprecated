@@ -89,7 +89,7 @@ class ChessGame:
 					location = pygame.mouse.get_pos() #get the coords of the mouse position
 
 					#if the click is NOT on the board, then do nothing
-					if(location[0] > B_width or location[1] > B_height):
+					if(location[0] > B_width + self.x_pos or location[1] > B_height + self.y_pos):
 						break
 					#if the gamemode is vs black cpu or it is white's turn, get the click position like normal
 					if(GAMEMODE == 'W' or (GAMEMODE == 'P' and self.whiteTurn == True)):
