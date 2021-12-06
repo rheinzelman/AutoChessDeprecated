@@ -2,6 +2,7 @@ import pygame
 import pygame_gui
 import GUI_Settings
 import GUI_VSChessBot
+import GUI_ConnectMenu
 
 
 class MainMenu:
@@ -21,8 +22,8 @@ class MainMenu:
         self.vs_cpu_button = pygame_gui.elements.UIButton(relative_rect=start_rect, text='Play vs CPU',
                                                           manager=self.manager)
 
-        start_rect = pygame.Rect((340, 250), (120, 50))
-        self.vs_board_button = pygame_gui.elements.UIButton(relative_rect=start_rect, text='Play vs Board',
+        connect_rect = pygame.Rect((340, 250), (120, 50))
+        self.vs_board_button = pygame_gui.elements.UIButton(relative_rect=connect_rect, text='Play vs Board',
                                                             manager=self.manager)
 
         settings_rect = pygame.Rect((340, 325), (120, 50))
@@ -47,8 +48,10 @@ class MainMenu:
 
                 if event.type == pygame.USEREVENT:
                     if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
-                        if event.ui_element == self.vs_cpu_button or self.vs_board_button:
+                        if event.ui_element == self.vs_cpu_button:
                             GUI_VSChessBot.VersusCPU()
+                        if event.ui_element == self.vs_board_button:
+                            GUI_ConnectMenu.ConnectMenu()
                         if event.ui_element == self.settings_button:
                             GUI_Settings.SettingsMenu()
                         if event.ui_element == self.quit_button:
