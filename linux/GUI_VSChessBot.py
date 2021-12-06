@@ -1,25 +1,25 @@
 import pygame
 import pygame_gui
-
+import gametest
 
 class VersusCPU:
     def __init__(self):
         self.clock = pygame.time.Clock()
 
-        self.window_surface = pygame.display.set_mode((640, 940))
+        self.window_surface = pygame.display.set_mode((1270, 1120))
 
-        self.manager = pygame_gui.UIManager((640, 1000))
+        self.manager = pygame_gui.UIManager((1270, 1120))
 
-        self.background = pygame.Surface((640, 1000))
-        self.background.fill(pygame.Color('lightblue'))
+        self.background = pygame.Surface((1270, 1120))
+        self.background.fill(pygame.Color('lightcoral'))
 
-        self.game_space = pygame.Surface((640, 640))
+        self.game_space = pygame.Surface((1270, 920))
         self.game_space.fill(pygame.Color('black'))
 
-        self.top_bar = pygame.Surface((640, 100))
+        self.top_bar = pygame.Surface((1270, 100))
         self.top_bar.fill(pygame.Color('lightcoral'))
 
-        self.bottom_bar = pygame.Surface((720, 200))
+        self.bottom_bar = pygame.Surface((1270, 100))
         self.bottom_bar.fill(pygame.Color('lightcoral'))
 
         WHITE = (255, 255, 255)
@@ -51,7 +51,7 @@ class VersusCPU:
 
             self.window_surface.blit(self.top_bar, (0, 0))
 
-            self.window_surface.blit(self.bottom_bar, (0, 740))
+            self.window_surface.blit(self.bottom_bar, (0, 1020))
 
             self.manager.draw_ui(self.window_surface)
 

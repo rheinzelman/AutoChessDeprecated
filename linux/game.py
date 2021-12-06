@@ -10,12 +10,13 @@ import time
 import ioDriver
 #contains classes for utilizing chess library function calls
 import gameEngine
+#serial port communication library
 
 
 #PYGAME DEFS
 BOARD_SIZE = B_width, B_height = 920, 920
-PANEL_SIZE = P_width, P_height = 350, 920
-WINDOW_SIZE = W_width, W_height = B_width + P_width, 920 #size is a tuple defined by the window height and width
+PANEL_SIZE = P_width, P_height = 350, B_height
+WINDOW_SIZE = W_width, W_height = B_width + P_width, B_height #size is a tuple defined by the window height and width
 dimensions = 8 #board dimensions, don't change because offsets for flipping and char conversion are hardcoded
 SQUARE_SIZE = math.floor(B_height/dimensions) #size of each piece square
 
@@ -56,12 +57,27 @@ def main():
 	#Keeps track of turns when playing CPU
 	whiteTurn = True
 	isFlipped = False
+	resignFlag = False
 	if(GAMEMODE == 'B'):
 		isFlipped = True
 
+	#UI initialization and drawing
+	font = pygame.font.SysFont('ubuntumono', 35)
+
+	padding = 20
+	
+	resignButton = pygame.Rect((B_width+padding,(P_height/2)+padding, P_width*.4, P_height*.1))
+	resignText = font.render('Resign', True, (200,200,200))
+	
+	drawButton = pygame.Rect(W_width-resignButton.w-padding, (P_height/2)+padding, P_width*.4,P_height*.1)
+	drawText = font.render('Draw', True, (200,200,200))
+
 	#display the initial boardstate before anyone makes a move
 	boardState = ioDriver.formatASCII(game.board)
+	drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces')
 	drawGameState(window,game,boardState,isFlipped)
+
+	#update the window
 	pygame.display.flip()
 
 
@@ -70,7 +86,7 @@ def main():
 	
 	running = True #game loop condition
 
-	while running and not game.board.is_game_over():
+	while running and not game.board.is_game_over() and resignFlag == False:
 		
 		#wait for an event to happen
 		for e in pygame.event.get():
@@ -86,16 +102,21 @@ def main():
 					
 					#if the click is NOT on the board, then do nothing
 					if(location[0] > B_width or location[1] > B_height):
-						break
+						if(resignButton.collidepoint(location)):
+							resignFlag = True
+							print(game.getTurn() + ' has resigned.')
+						elif(drawButton.collidepoint(location)):
+							print(game.getTurn() + ' offers a draw...')
+							offerDraw(window)
 					#if the gamemode is vs black cpu or it is white's turn, get the click position like normal
-					if(GAMEMODE == 'W' or (GAMEMODE == 'P' and whiteTurn == True)):
+					if((location[0] <= B_width and location[1] <= B_height) and GAMEMODE == 'W' or (GAMEMODE == 'P' and whiteTurn == True)):
 						col = chr(math.floor(location[0]/SQUARE_SIZE)+97) #translate the column position into a char, a-h
 						row = math.floor(9-location[1]/SQUARE_SIZE) #translate the row into a num, 1-9
 						playerClick = (col, row) #make a tuple playerClick and have it be the row and col
 						highlightSquare(window, boardState, isFlipped, 8-math.floor(9-(location[0]/SQUARE_SIZE)), 8-row)
 						playerMove = playerMove + playerClick #make the playerMove tuple nest two playerClick tuples, which will represent the UCI move
 					#if the gamemode is vs white cpu or it is black's turn, flip the coordinate calculation
-					if(GAMEMODE == 'B' or (GAMEMODE == 'P' and whiteTurn == False)):
+					if((location[0] <= B_width and location[1] <= B_height) and GAMEMODE == 'B' or (GAMEMODE == 'P' and whiteTurn == False)):
 						col = chr(7-math.floor(location[0]/SQUARE_SIZE)+97) #translate the column position into a char, a-h
 						row = 9-math.floor(9-location[1]/SQUARE_SIZE) #translate the row into a num, 1-9
 						playerClick = (col, row) #make a tuple playerClick and have it be the row and col
@@ -106,6 +127,7 @@ def main():
 		if(GAMEMODE == 'B' and whiteTurn == True):
 			game.pushCPUMove()
 			boardState = ioDriver.formatASCII(game.board)
+			drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces')
 			drawGameState(window,game,boardState,isFlipped)
 			time.sleep(.10)
 			whiteTurn = False
@@ -114,6 +136,7 @@ def main():
 		if(len(playerMove) >= 4):
 	
 			#drawing the gamestate when there is a complete set of playerMove deletes any highlighted squares
+			drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces')
 			drawGameState(window, game, boardState, isFlipped)
 
 			UCIMove = '' #initialize an empty string to store UCI moves
@@ -130,21 +153,27 @@ def main():
 			#then generate a cpu move, and update the window
 			else:
 				boardState = ioDriver.formatASCII(game.board)
+				drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces')
 				drawGameState(window,game,boardState,isFlipped)
 				if(GAMEMODE == 'B'):
 					whiteTurn = not whiteTurn
 				if(GAMEMODE == 'W'):
 					game.pushCPUMove()
 					boardState = ioDriver.formatASCII(game.board)
+					drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces')
 					drawGameState(window, game, boardState, isFlipped)					
 				if(GAMEMODE == 'P'):
 					isFlipped = not isFlipped
 					whiteTurn = not whiteTurn
 					flipTransition(window)
+					drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces')
 					drawGameState(window, game, boardState, isFlipped)
 			playerMove = () #make playerMove empty for future moves
 
 	endgameScreen(window, game)
+
+	if(resignFlag):
+		print(game.getWinner() + "wins!")
 
 	print('Move Log: ' + game.getMoveLog())
 	print('Winner: ' + game.getWinner())
@@ -158,7 +187,6 @@ def main():
 def drawGameState(window, game, boardState, isFlipped):
 	drawSquares(window)
 	drawPieces(window, boardState, isFlipped)
-	drawUI(window, game, 'moveLog', 'capturedPieces')
 	pygame.display.flip()
 
 #draw squares of alternating color on the board surface by drawing a rectangle of SQUARE_SIZE
@@ -190,7 +218,7 @@ def drawPieces(window, boardState, isFlipped):
 def drawLog(window, game):
 	font = pygame.font.SysFont('ubuntumono', 25)
 	moveLogContainer = pygame.Rect(B_width, 0, P_width, P_height/2)
-	pygame.draw.rect(window, (57,57,57), moveLogContainer)
+	pygame.draw.rect(window, (50,50,50), moveLogContainer)
 	moveLog = game.moveLog
 	movesPerRow = 4
 	padding = 5
@@ -208,17 +236,16 @@ def drawLog(window, game):
 		window.blit(moveText,moveTextLocation)
 		newLineSpacing += moveText.get_height() + 2
 
-def drawUI(window, game, moveLog, capturedPieces):
-
-	padding = 20
-
+def drawUI(window, game, resignButton, resignText, drawButton, drawText, capturedPieces):
 	sidebar = pygame.Rect(B_width,0,W_width-B_width,W_height)
-	pygame.draw.rect(window, (57,57,57), sidebar)
+	pygame.draw.rect(window, (50,50,50), sidebar)
 	drawLog(window, game)
-	resignButton = pygame.Rect((B_width+padding,(P_height/2)+padding, P_width*.4, P_height*.1))
-	pygame.draw.rect(window, (255,0,0), resignButton, 0, 9)
-	drawButton = pygame.Rect(W_width-resignButton.w-padding, (P_height/2)+padding, P_width*.4,P_height*.1)
-	pygame.draw.rect(window, (255,0,0), drawButton, 0, 9)
+	pygame.draw.rect(window, (80,80,80), resignButton, 0, 9)
+	pygame.draw.rect(window, (80,80,80), drawButton, 0, 9)
+	window.blit(resignText,(resignButton.x+(resignButton.width/2)-resignText.get_width()/2, resignButton.y+(resignButton.height/2)-resignText.get_height()/2-5))
+	window.blit(drawText,(drawButton.x+(drawButton.width/2)-drawText.get_width()/2, drawButton.y+(drawButton.height/2)-drawText.get_height()/2-5))
+
+
 
 def highlightSquare(window, boardState, isFlipped, col, row):
 	pygame.draw.rect(window, pygame.Color(252, 189, 53), pygame.Rect(col*SQUARE_SIZE, row*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
@@ -231,6 +258,10 @@ def flipTransition(window):
 	pygame.draw.rect(window, (0,0,0), pygame.Rect(0,0,B_width,B_height))
 	pygame.display.flip()
 	time.sleep(.25)
+
+def offerDraw(window):
+	pass
+	#display a prompt asking if P2 wants to draw
 
 def endgameScreen(window, game):
 	pygame.draw.rect(window, (255,255,255), pygame.Rect(0,0,W_width,W_height))

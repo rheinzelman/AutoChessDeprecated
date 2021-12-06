@@ -1,3 +1,7 @@
+#serial port communication library
+import serial
+import time
+
 #helps us break the board's ascii output into a 2d array for gui and IO utilization
 def formatASCII(ASCIIBoard):
     #initialize an empty char array to represent the ascii board
@@ -29,3 +33,4 @@ def formatASCII(ASCIIBoard):
 
     #return an I/O compatible boardArray
     return boardArray
+

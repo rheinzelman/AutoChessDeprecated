@@ -74,6 +74,12 @@ class chessEngine:
 		else:
 			pass
 
+	def getTurn(self):
+		if(self.whiteTurn):
+			return 'White'
+		else:
+			return 'Black'
+
 	def getWinner(self):
 		if(self.whiteTurn):
 			return 'Black'
