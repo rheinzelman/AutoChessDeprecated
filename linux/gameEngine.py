@@ -8,8 +8,10 @@ import ioDriver
 
 class chessEngine:
 	def __init__(self, GAMEMODE, CPU_DIFFICULTY, STARTING_FEN):
+		#if the starting_fen is empty, then initialize with a standard board fen
 		if(not STARTING_FEN):
 			self.board = chess.Board()
+		#else initialize with the given fen
 		else:
 			self.board = chess.Board(STARTING_FEN)
 		self.GAMEMODE = GAMEMODE
