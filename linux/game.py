@@ -37,8 +37,24 @@ IMAGES = {
 }
 
 #Gamemode variables
-GAMEMODE = 'P' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
+GAMEMODE = 'W' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
 CPU_DIFFICULTY = '10' #sets the difficulty of the stockfish engine, can be 1-10
+'''
+0: standard FEN 
+1: Legal move detection
+2: Endgame Checkmate
+3: Promotion
+4: Fivefold Repetition
+5: En Passant (Set gamemode to P)
+'''
+DEMO_FENS = [	'',
+				'4r3/2k5/2q5/8/4B3/8/1N2K1P1/8',
+				'8/2k5/6R1/5R2/8/8/4K3/8',
+				'4k3/6P1/1n6/8/8/6R1/1K6/8',
+				'5rk1/5p1R/7K/8/8/8/8/8',
+				'rnbqkbnr/1pppppp1/p6p/8/3PP3/8/PPP2PPP/RNBQKBNR']
+
+STARTING_FEN = DEMO_FENS[5]
 
 def main(): 
 	
@@ -48,7 +64,7 @@ def main():
 	pygame.font.init()
 
 	#gamestate variables
-	game = gameEngine.chessEngine(GAMEMODE, CPU_DIFFICULTY) #initialize the virtual game state
+	game = gameEngine.chessEngine(GAMEMODE, CPU_DIFFICULTY, STARTING_FEN) #initialize the virtual game state
 	boardState = ioDriver.formatASCII(game.board) #create an array describing our boardstate
 	#keeps track of where a player has clicked and stores it in player move
 	playerClick = ()
@@ -114,7 +130,9 @@ def main():
 						row = math.floor(9-location[1]/SQUARE_SIZE) #translate the row into a num, 1-9
 						playerClick = (col, row) #make a tuple playerClick and have it be the row and col
 						highlightSquare(window, boardState, isFlipped, 8-math.floor(9-(location[0]/SQUARE_SIZE)), 8-row)
+
 						playerMove = playerMove + playerClick #make the playerMove tuple nest two playerClick tuples, which will represent the UCI move
+
 					#if the gamemode is vs white cpu or it is black's turn, flip the coordinate calculation
 					if((location[0] <= B_width and location[1] <= B_height) and GAMEMODE == 'B' or (GAMEMODE == 'P' and whiteTurn == False)):
 						col = chr(7-math.floor(location[0]/SQUARE_SIZE)+97) #translate the column position into a char, a-h
@@ -125,12 +143,14 @@ def main():
 
 		#If gamemode is vs white CPU, and it is the CPU's turn, generate a cpu move and push it
 		if(GAMEMODE == 'B' and whiteTurn == True):
-			game.pushCPUMove()
-			boardState = ioDriver.formatASCII(game.board)
-			drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces')
-			drawGameState(window,game,boardState,isFlipped)
-			time.sleep(.10)
-			whiteTurn = False
+			if(game.pushCPUMove()):
+				boardState = ioDriver.formatASCII(game.board)
+				drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces')
+				drawGameState(window,game,boardState,isFlipped)
+				time.sleep(.10)
+				whiteTurn = False
+			else:
+				print('CPU has no more legal moves')
 
 		#if a first square and second square has been clicked, reset playerMove and check if it's valid
 		if(len(playerMove) >= 4):
@@ -140,10 +160,12 @@ def main():
 			drawGameState(window, game, boardState, isFlipped)
 
 			UCIMove = '' #initialize an empty string to store UCI moves
-			
+
 			#for every tuple in playerMove, convert it into a string and store in UCIMove
 			for item in playerMove:
 				UCIMove = UCIMove + str(item)
+			if(game.isPawn(playerMove) and playerMove[1] == 7 and playerMove[3] == 8):
+				UCIMove = playerMove[0] + str(playerMove[1]) + playerMove[2] + str(playerMove[3]) + 'q'
 			#if pushPlayerMove returns false (invalid move), tell the player
 			if((str(playerMove[0]) + str(playerMove[1])) == (str(playerMove[2]) + str(playerMove[3]))):
 				print('Deselecting move')
@@ -170,14 +192,8 @@ def main():
 					drawGameState(window, game, boardState, isFlipped)
 			playerMove = () #make playerMove empty for future moves
 
-	endgameScreen(window, game)
-
-	if(resignFlag):
-		print(game.getWinner() + "wins!")
-
-	print('Move Log: ' + game.getMoveLog())
-	print('Winner: ' + game.getWinner())
-	print("Quitting...")
+	endgameScreen(window, game, resignFlag)
+	
 	#when exiting the game loop, quit pygame
 	pygame.quit()
 	#quit the chess engine
@@ -263,14 +279,21 @@ def offerDraw(window):
 	pass
 	#display a prompt asking if P2 wants to draw
 
-def endgameScreen(window, game):
+def endgameScreen(window, game, resignFlag):
 	pygame.draw.rect(window, (255,255,255), pygame.Rect(0,0,W_width,W_height))
-
+	outcome = str(game.board.outcome())
+	print(outcome)
 	font = pygame.font.SysFont('ubuntumono', 50)
-	outcomeText = font.render(game.getWinner() + ' Won!', True, (0,0,0))
+	if(resignFlag):
+		outcomeText = font.render(game.getWinner() + ' won by resignation!', True, (0,0,0))
+	elif('FIVEFOLD_REPETITION' in outcome):
+		outcomeText = font.render('Draw by fivefold repetition!', True, (0,0,0))
+	else:
+		outcomeText = font.render(game.getWinner() + ' won by checkmate!', True, (0,0,0))
 	window.blit(outcomeText,((W_width/2)-outcomeText.get_width()/2,(W_height/2)-outcomeText.get_height()))
 	pygame.display.flip()
-	time.sleep(5)
+	time.sleep(2.5)
+
 
 if __name__ == '__main__':
 	main()
