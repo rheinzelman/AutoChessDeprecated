@@ -11,27 +11,34 @@ class MainMenu:
         self.window_surface = pygame.display.set_mode((800, 600))
 
         self.background = pygame.Surface((800, 600))
-        self.background.fill(pygame.Color('lightcoral'))
+        self.background.fill(pygame.Color('grey'))
 
-        font = pygame.font.SysFont('montserrat.ttf', 72)
-        self.text = font.render('Auto Chess', True, (255, 255, 255))
+        font = pygame.font.SysFont('montserrat.ttf', 200)
+        self.text = font.render('', True, (255, 255, 255))
+        self.image = pygame.image.load('logo.png')
+        self.image2 = pygame.image.load('background.jpg')
+        self.image3 = pygame.image.load('vscpu.png')
+        self.board100 = pygame.image.load('board100.png')
+        self.manager = pygame_gui.UIManager((800, 600), 'theme2.json')
 
-        self.manager = pygame_gui.UIManager((800, 600))
-
-        start_rect = pygame.Rect((340, 175), (120, 50))
+        start_rect = pygame.Rect((340, 125), (150, 50))
         self.vs_cpu_button = pygame_gui.elements.UIButton(relative_rect=start_rect, text='Play vs CPU',
                                                           manager=self.manager)
 
-        connect_rect = pygame.Rect((340, 250), (120, 50))
+        connect_rect = pygame.Rect((340, 300), (150, 50))
         self.vs_board_button = pygame_gui.elements.UIButton(relative_rect=connect_rect, text='Play vs Board',
                                                             manager=self.manager)
 
-        settings_rect = pygame.Rect((340, 325), (120, 50))
+        settings_rect = pygame.Rect((340, 450), (150, 50))
         self.settings_button = pygame_gui.elements.UIButton(relative_rect=settings_rect, text='Settings',
                                                             manager=self.manager)
 
-        quit_rect = pygame.Rect((340, 400), (120, 50))
+        quit_rect = pygame.Rect((500, 450), (150, 50))
         self.quit_button = pygame_gui.elements.UIButton(relative_rect=quit_rect, text='Quit Game',
+                                                        manager=self.manager)
+       
+        quit_rect = pygame.Rect((165, 450), (150, 50))
+        self.quit_button = pygame_gui.elements.UIButton(relative_rect=quit_rect, text='Friends',
                                                         manager=self.manager)
 
         self.update()
@@ -63,6 +70,12 @@ class MainMenu:
             self.manager.update(time_delta)
 
             self.window_surface.blit(self.background, (0, 0))
+            
+            self.window_surface.blit(self.image2, (0, 0))
+            self.window_surface.blit(self.image3, (350, 180))
+            self.window_surface.blit(self.board100, (360, 350))
+            
+            self.window_surface.blit(self.image, (175, 0))
 
             self.window_surface.blit(self.text, ((800 - self.text.get_width()) * 0.5, 50))
 

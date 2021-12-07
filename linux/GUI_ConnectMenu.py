@@ -11,7 +11,7 @@ class ConnectMenu:
 
         self.background = pygame.Surface((800, 600))
         self.background.fill(pygame.Color('lightcoral'))
-
+        self.image = pygame.image.load('board.png')
         self.manager = pygame_gui.UIManager((800, 600))
 
         WHITE = (255, 255, 255)
@@ -56,6 +56,7 @@ class ConnectMenu:
                 self.manager.update(time_delta)
 
             self.window_surface.blit(self.background, (0, 0))
+            self.window_surface.blit(self.image, (0, 0))
 
             self.window_surface.blit(self.ip_field_text, (((800 - self.ip_field_text.get_width()) * 0.5), 150))
 
