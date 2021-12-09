@@ -6,6 +6,11 @@ import chess.engine
 
 import ioDriver
 
+'''
+GAMEMODE: currently does nothing other than help the chessEngine object keep track of whose turn it is for endgame purposes
+CPU_DIFFICULTY: edits stockfish's config file to change difficulty
+STARTING_FEN: leave blank for standard FEN, fill with custom FEN otherwise
+'''
 class chessEngine:
 	def __init__(self, GAMEMODE, CPU_DIFFICULTY, STARTING_FEN):
 		#if the starting_fen is empty, then initialize with a standard board fen
@@ -23,6 +28,9 @@ class chessEngine:
 		if(GAMEMODE == 'B'):
 			self.whiteTurn == False
 
+	#take a UCIMove string in and convert it to chess.Move.from_uci format
+	#test it's legality, if it's legal, push and return True, otherwise return false
+	#additionally, add the move to the moveLog list 
 	def pushPlayerMove(self, UCIMove):
 		isLegalMove = False
 		print('Your move: ' + UCIMove)
@@ -43,6 +51,9 @@ class chessEngine:
 		else:
 			return False
 
+	#generate a legal cpu move and push it
+	#if no moves can be made return false, ending the game vs CPU
+	#additionally, add the move to the moveLog list
 	def pushCPUMove(self):
 		CPUMove = self.engine.play(self.board, chess.engine.Limit(time=0.1))
 		if(CPUMove.move in self.board.legal_moves):
@@ -62,44 +73,41 @@ class chessEngine:
 		else:
 			return False
 
-	def isLegal(self, UCIMove):
-		print("UCI Move: ", end='')
-		print(UCIMove)
-		move = chess.Move.from_uci(UCIMove)
-		if(move in self.board.legal_moves):
-			return True
-		else:
-			return False
-
+	#takes in a player move and returns true if the player is attempting to move a pawn
+	#useful for pawn promotion
 	def isPawn(self, playerMove):
 		if(self.board.piece_type_at(chess.square(ord(playerMove[0])-97,playerMove[1]-1)) == 1):
 			return True
 		else:
 			return False
 
+	#return moveLog
 	def getMoveLog(self):
 		logString = ''
 		for move in range(len(self.moveLog)):
 			logString = logString + self.moveLog[move]
 		return logString
 
+	#get the last move of the moveLog
 	def getLastMove(self):
 		if(len(self.moveLog) > 0):
 			return self.moveLog[len(self.moveLog)-1]
 		else:
 			pass
 
+	#get the current turn of the board
 	def getTurn(self):
 		if(self.whiteTurn):
 			return 'White'
 		else:
 			return 'Black'
-
+	#get the winner of the last move (simply the not of getTurn)
 	def getWinner(self):
 		if(self.whiteTurn):
 			return 'Black'
 		else:
 			return 'White'
 
+	#quit the stockfish engine so your computer doesn't explode
 	def quitEngine(self):
 		self.engine.quit()
