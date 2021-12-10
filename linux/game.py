@@ -1,4 +1,4 @@
-#pygame: for window and gui creation, and board interactivity
+	#pygame: for window and gui creation, and board interactivity
 import pygame
 #chess: for move validation and match virtualization
 import chess
