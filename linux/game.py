@@ -37,7 +37,7 @@ IMAGES = {
 }
 
 #Gamemode variables
-GAMEMODE = 'W' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
+GAMEMODE = 'P' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
 CPU_DIFFICULTY = '10' #sets the difficulty of the stockfish engine, can be 1-10
 '''
 0: standard FEN 
@@ -54,7 +54,7 @@ DEMO_FENS = [	'',
 				'5rk1/5p1R/7K/8/8/8/8/8',
 				'rnbqkbnr/1pppppp1/p6p/8/3PP3/8/PPP2PPP/RNBQKBNR']
 
-STARTING_FEN = DEMO_FENS[0]
+STARTING_FEN = DEMO_FENS[3]
 
 def main(): 
 	
