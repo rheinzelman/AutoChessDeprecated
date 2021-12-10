@@ -1,0 +1,49 @@
+{
+     "defaults":
+     {
+         "colours":
+         {
+             "normal_bg":"#B0B0B0",
+             "link_text": "#0000EE",
+             "link_hover": "#CCCCCC",
+             "link_selected": "#551A8B",
+             "text_shadow": "#777777",
+             "normal_border": "#DDDDDD",
+             "hovered_border": "#B0B0B0",
+         }
+     },
+
+     "button":
+     {
+         "colours":
+         {
+             "normal_bg":"#B0B0B0",
+             "link_text": "#0000EE",
+             "link_hover": "#CCCCCC",
+             "link_selected": "#551A8B",
+             "text_shadow": "#777777",
+             "normal_border": "#DDDDDD",
+             "hovered_border": "#B0B0B0",
+         },
+	"label":
+         {
+           "colours":
+           {
+             "normal_bg":"#B0B0B0",
+             "text_shadow": "#777777",
+             "normal_border": "#DDDDDD",
+             "hovered_border": "#B0B0B0",
+             "normal_bg":"#B0B0B0",
+             "link_text": "#0000EE",
+             "link_hover": "#CCCCCC",
+             "link_selected": "#551A8B",
+             "text_shadow": "#777777",
+             "normal_border": "#DDDDDD",
+             "hovered_border": "#B0B0B0",
+           },
+         "misc":
+         {
+             "tool_tip_delay": "1.5"
+         }
+     }
+ }
