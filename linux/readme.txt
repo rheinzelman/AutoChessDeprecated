@@ -53,6 +53,7 @@ Lastly, the ioDriver module is used to convert python-chess' ugly print(Board) o
 
 Contributions:
 Raymond Heinzelman: game.py*, gameEngine.py, ioDriver.py
+Holden Bowman - branch Holden: mainMenuTest.py, GUI_MainMenu.py, GUI_ConnectMenu.py, GUI_Settings.py, GUI_VSChessBot.py
 
 *The methods drawSquares(), drawPieces(), and parts of drawLog are based of off Eddie Sharick's tutorial video 'Chess Engine in Python - Part 1 - Drawing the board'. However, they are very modified, and serve only as a foundation for which I used to implement the rest of the program's features.
 
