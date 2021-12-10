@@ -55,3 +55,10 @@ Contributions:
 Raymond Heinzelman: game.py*, gameEngine.py, ioDriver.py
 
 *The methods drawSquares(), drawPieces(), and parts of drawLog are based of off Eddie Sharick's tutorial video 'Chess Engine in Python - Part 1 - Drawing the board'. However, they are very modified, and serve only as a foundation for which I used to implement the rest of the program's features.
+
+Integrated Resources:
+Stockfish: https://stockfishchess.org/
+
+Python-Chess library: https://python-chess.readthedocs.io/en/latest/
+
+
