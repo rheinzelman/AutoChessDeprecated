@@ -55,6 +55,8 @@ Contributions:
 Raymond Heinzelman: game.py*, gameEngine.py, ioDriver.py
 Holden Bowman - branch Holden: mainMenuTest.py, GUI_MainMenu.py, GUI_ConnectMenu.py, GUI_Settings.py, GUI_VSChessBot.py
 Cade Hockersmith - branch Cade: GUI_Tournament.py, TournamentMenu.py, Updated GUI_MainMenu, Designed logos and screens
+Kaleb Cansdale - branch Kaleb: python serial comm.py, Arduino_String_converter.ino, Stepper_Control_Via_Python_Comm.ino, board design
+William Crampton - branch Bill: Form1.Designer.txt,Form1.txt, 3D models of board components, board design
 
 *The methods drawSquares(), drawPieces(), and parts of drawLog are based of off Eddie Sharick's tutorial video 'Chess Engine in Python - Part 1 - Drawing the board'. However, they are very modified, and serve only as a foundation for which I used to implement the rest of the program's features.
 
