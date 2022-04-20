@@ -1,4 +1,4 @@
-	#pygame: for window and gui creation, and board interactivity
+# pygame: for window and gui creation, and board interactivity
 import pygame
 #chess: for move validation and match virtualization
 import chess
@@ -14,7 +14,7 @@ import gameEngine
 
 
 #PYGAME DEFS
-BOARD_SIZE = B_width, B_height = 920, 920 #size of the chess board
+BOARD_SIZE = B_width, B_height = 92, 92 #size of the chess board
 PANEL_SIZE = P_width, P_height = 350, B_height #size of the side panel
 WINDOW_SIZE = W_width, W_height = B_width + P_width, B_height #size of the entire window
 dimensions = 8 #board dimensions, don't change because offsets for flipping and char conversion are hardcoded
@@ -64,6 +64,7 @@ def main():
 
 	#gamestate variables
 	game = gameEngine.chessEngine(GAMEMODE, CPU_DIFFICULTY, STARTING_FEN) #initialize the virtual game state
+	#initializeBoardState()
 	boardState = ioDriver.formatASCII(game.board) #create an array describing our boardstate
 	#keeps track of where a player has clicked and stores it in player move
 	playerClick = ()
@@ -161,6 +162,7 @@ def main():
 			#for every tuple in playerMove, convert it into a string and store in UCIMove
 			for item in playerMove:
 				UCIMove = UCIMove + str(item)
+			#isPawnPromotion
 			if(game.isPawn(playerMove) and playerMove[1] == 7 and playerMove[3] == 8):
 				UCIMove = playerMove[0] + str(playerMove[1]) + playerMove[2] + str(playerMove[3]) + 'q'
 			#if pushPlayerMove returns false (invalid move), tell the player

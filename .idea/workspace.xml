@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="7c87725f-ed6a-477a-a2fe-8e1a1aa06166" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/NewGUI/GUI_VSChessBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/linux/NewGUI/GUI_VSChessBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/linux/game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/piece_images/K.svg" beforeDir="false" afterPath="$PROJECT_DIR$/linux/piece_images/K.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/piece_images/N.svg" beforeDir="false" afterPath="$PROJECT_DIR$/linux/piece_images/N.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/piece_images/Q.svg" beforeDir="false" afterPath="$PROJECT_DIR$/linux/piece_images/Q.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/piece_images/R.svg" beforeDir="false" afterPath="$PROJECT_DIR$/linux/piece_images/R.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +27,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -35,21 +47,22 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/windows/game.py" />
   </component>
   <component name="RunManager">
-    <configuration name="mainMenuTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AutoChess" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/linux/NewGUI" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="C:\Users\JEDI PLM\AppData\Local\Microsoft\WindowsApps\python3.10.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/windows" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/linux/NewGUI/mainMenuTest.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/windows/game.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -60,7 +73,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.mainMenuTest" />
+        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
