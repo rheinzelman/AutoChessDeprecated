@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c87725f-ed6a-477a-a2fe-8e1a1aa06166" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/windows/test_game.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/windows/test_gameEngine.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/windows/test_ioDriver.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/github_actions.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/GUI_ConnectMenu.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/GUI_MainMenu.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/GUI_Settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/GUI_VSChessBot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/windows/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/gametest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/ioDriver.py" beforeDir="false" afterPath="$PROJECT_DIR$/windows/ioDriver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/mainMenuTest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/test.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +87,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1638409620129</updated>
-      <workItem from="1650741989594" duration="4666000" />
+      <workItem from="1650741989594" duration="5048000" />
     </task>
     <servers />
   </component>
