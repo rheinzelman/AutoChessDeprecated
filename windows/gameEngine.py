@@ -21,7 +21,7 @@ class chessEngine:
 			self.board = chess.Board(STARTING_FEN)
 		self.GAMEMODE = GAMEMODE
 		self.resignFlag = False
-		self.engine = chess.engine.SimpleEngine.popen_uci('..\linux\src\stockfish')
+		self.engine = chess.engine.SimpleEngine.popen_uci('../linux/src/stockfish')
 		self.engine.configure({"Skill Level": CPU_DIFFICULTY})
 		self.moveLog = []
 		self.whiteTurn = True
