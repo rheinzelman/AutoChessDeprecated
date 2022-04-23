@@ -9,7 +9,6 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.9"]
-
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -26,4 +25,3 @@ jobs:
         run: |
           cd windows 
           python -m pytest test_ioDriver.py
-          echo "Leute meine Mutter hat mir einfach erlaubt, dass ich mir wieder eine Cola kaufen darf! :D Ich hatte aber leider nicht genug Geld und hab mir leider nur eine "Ja!"-Cola gekauft. :( Aber jetzt kann ich Cola trinken und Trios zocken! :D YIPPYYYYYYYY!!!!!"
