@@ -7,7 +7,7 @@ import math
 #time: for the illusion of the computer taking extra time to think
 import time
 #ioDriver.py: for communicating with the physical board's io and making the chess library output readable for the program
-import ioDriver
+from ioDriver import IODriver
 #contains classes for utilizing chess library function calls
 import gameEngine
 #serial port communication library
@@ -56,6 +56,8 @@ DEMO_FENS = [	'',
 
 STARTING_FEN = DEMO_FENS[0]
 
+ioDriverObj = IODriver()
+
 def main(): 
 	
 	pygame.init() #initialize pygame
@@ -65,7 +67,7 @@ def main():
 	#gamestate variables
 	game = gameEngine.chessEngine(GAMEMODE, CPU_DIFFICULTY, STARTING_FEN) #initialize the virtual game state
 	#initializeBoardState()
-	boardState = ioDriver.formatASCII(game.board) #create an array describing our boardstate
+	boardState = ioDriverObj.formatASCII(game.board) #create an array describing our boardstate
 	#keeps track of where a player has clicked and stores it in player move
 	playerClick = ()
 	#stores 2 playerClicks and converts them into a UCI move
@@ -87,7 +89,7 @@ def main():
 	drawButton = pygame.Rect(W_width-resignButton.w-padding, (P_height/2)+padding, P_width*.4,P_height*.1)
 	drawText = font.render('Draw', True, (200,200,200))
 
-	boardState = ioDriver.formatASCII(game.board) #display the initial boardstate before anyone makes a move
+	boardState = ioDriverObj.formatASCII(game.board) #display the initial boardstate before anyone makes a move
 	drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces') #Draw the Side panel along with the UI elements
 	drawGameState(window,game,boardState,isFlipped) #draw the board in the correct gamestate
 
@@ -142,7 +144,7 @@ def main():
 		#If gamemode is vs white CPU, and it is the CPU's turn, generate a cpu move, push it, and draw the board
 		if(GAMEMODE == 'B' and whiteTurn == True):
 			if(game.pushCPUMove()):
-				boardState = ioDriver.formatASCII(game.board)
+				boardState = ioDriverObj.formatASCII(game.board)
 				drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces')
 				drawGameState(window,game,boardState,isFlipped)
 				time.sleep(.10)
@@ -173,14 +175,14 @@ def main():
 			#otherwise, update the boardState array, use it to update the window
 			#then generate a cpu move, and update the window
 			else:
-				boardState = ioDriver.formatASCII(game.board)
+				boardState = ioDriverObj.formatASCII(game.board)
 				drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces')
 				drawGameState(window,game,boardState,isFlipped)
 				if(GAMEMODE == 'B'):
 					whiteTurn = not whiteTurn
 				if(GAMEMODE == 'W'):
 					game.pushCPUMove()
-					boardState = ioDriver.formatASCII(game.board)
+					boardState = ioDriverObj.formatASCII(game.board)
 					drawUI(window, game, resignButton, resignText, drawButton, drawText, 'capturedPieces')
 					drawGameState(window, game, boardState, isFlipped)					
 				if(GAMEMODE == 'P'):
