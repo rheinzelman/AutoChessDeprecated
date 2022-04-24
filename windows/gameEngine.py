@@ -6,6 +6,8 @@ import chess.engine
 
 import ioDriver
 
+import platform
+
 '''
 GAMEMODE: currently does nothing other than help the chessEngine object keep track of whose turn it is for endgame purposes
 CPU_DIFFICULTY: edits stockfish's config file to change difficulty
@@ -13,6 +15,12 @@ STARTING_FEN: leave blank for standard FEN, fill with custom FEN otherwise
 '''
 class chessEngine:
 	def __init__(self, GAMEMODE, CPU_DIFFICULTY, STARTING_FEN):
+
+		if('Linux' in platform.system()):
+			linux = True
+		else:
+			linux = False
+
 		#if the starting_fen is empty, then initialize with a standard board fen
 		if(not STARTING_FEN):
 			self.board = chess.Board()
@@ -21,7 +29,10 @@ class chessEngine:
 			self.board = chess.Board(STARTING_FEN)
 		self.GAMEMODE = GAMEMODE
 		self.resignFlag = False
-		self.engine = chess.engine.SimpleEngine.popen_uci('src/stockfish')
+		if(linux):
+			self.engine = chess.engine.SimpleEngine.popen_uci('../linux/src/stockfish')
+		else:
+			self.engine = chess.engine.SimpleEngine.popen_uci('src/stockfish')
 		self.engine.configure({"Skill Level": CPU_DIFFICULTY})
 		self.moveLog = []
 		self.whiteTurn = True
