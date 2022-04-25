@@ -41,7 +41,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
-          file: ../../Dockerfile
+          context: AutoChessDeprecated
+          file: AutoChessDeprecated/Dockerfile
           push: true
           tags: ${{ secrets.USERNAME }}/autochessdeprecated:latest
