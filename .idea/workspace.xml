@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c87725f-ed6a-477a-a2fe-8e1a1aa06166" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/github_actions.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/github_actions.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/windows/game.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +94,7 @@
       <updated>1638409620129</updated>
       <workItem from="1650741989594" duration="9103000" />
       <workItem from="1650913621741" duration="4201000" />
-      <workItem from="1650920000150" duration="6485000" />
+      <workItem from="1650920000150" duration="6560000" />
     </task>
     <servers />
   </component>
