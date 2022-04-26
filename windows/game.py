@@ -13,7 +13,7 @@ from ioDriver import IODriver
 import gameEngine
 #serial port communication library
 
-print("test")
+
 
 #PYGAME DEFS
 BOARD_SIZE = B_width, B_height = 420, 420 #size of the chess board

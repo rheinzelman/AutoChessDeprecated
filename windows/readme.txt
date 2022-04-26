@@ -1,5 +1,5 @@
 Installation:
-Currently tested and working on linux with python3. Dependencies need to be installed through pip. Dependencies needed are: 
+Currently tested and working on linux and windows with python3. Dependencies need to be installed through pip. Dependencies needed are:
  - chess
  - pygame 
 Once these libraries are installed, run main.py with 'python3 game.py'
@@ -64,5 +64,11 @@ Integrated Resources:
 Stockfish: https://stockfishchess.org/
 
 Python-Chess library: https://python-chess.readthedocs.io/en/latest/
+
+############################################
+#                                          #
+#               Automation                 #
+#                                          #
+############################################
 
 
