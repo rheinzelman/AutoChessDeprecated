@@ -75,7 +75,6 @@ class chessEngine:
 			print('CPU move: ', end='')
 			print(CPUMove.move)
 			self.board.push(CPUMove.move)
-			print(self.board)
 			if(len(self.moveLog) == 0):
 				self.moveLog.append(str(CPUMove.move))
 			else:
@@ -83,9 +82,9 @@ class chessEngine:
 				self.moveLog[len(self.moveLog)-1] = temp + ', '
 				self.moveLog.append(str(CPUMove.move))
 			self.whiteTurn = not self.whiteTurn
-			return True
+			return CPUMove.move
 		else:
-			return False
+			return CPUMove.move
 
 	#takes in a player move and returns true if the player is attempting to move a pawn
 	#useful for pawn promotion
