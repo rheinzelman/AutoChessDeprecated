@@ -41,8 +41,8 @@ IMAGES = {
 }
 
 #Gamemode variables
-GAMEMODE = 'W' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
-CPU_DIFFICULTY = '10' #sets the difficulty of the stockfish engine, can be 1-10
+GAMEMODE = 'B' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
+CPU_DIFFICULTY = '2' #sets the difficulty of the stockfish engine, can be 1-10
 '''
 0: standard FEN 
 1: Legal move detection
@@ -168,6 +168,7 @@ def main():
 			#for every tuple in playerMove, convert it into a string and store in UCIMove
 			for item in playerMove:
 				UCIMove = UCIMove + str(item)
+			print(playerMove)
 			#isPawnPromotion
 			if(game.isPawn(playerMove) and playerMove[1] == 7 and playerMove[3] == 8):
 				UCIMove = playerMove[0] + str(playerMove[1]) + playerMove[2] + str(playerMove[3]) + 'q'

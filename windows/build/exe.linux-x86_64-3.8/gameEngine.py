@@ -47,12 +47,10 @@ class chessEngine:
 	#additionally, add the move to the moveLog list 
 	def pushPlayerMove(self, UCIMove):
 		isLegalMove = False
-		print('Your move: ' + UCIMove)
 		move = chess.Move.from_uci(UCIMove)
 		if(move in self.board.legal_moves):
 			isLegalMove = True
 			self.board.push(move)
-			print(self.board)
 
 			if(len(self.moveLog) == 0):
 				self.moveLog.append(str(UCIMove))
@@ -61,6 +59,7 @@ class chessEngine:
 				self.moveLog[len(self.moveLog)-1] = temp + ', '
 				self.moveLog.append(str(UCIMove))
 			self.whiteTurn = not self.whiteTurn
+
 			return True
 		else:
 			return False
@@ -71,9 +70,6 @@ class chessEngine:
 	def pushCPUMove(self):
 		CPUMove = self.engine.play(self.board, chess.engine.Limit(time=0.1))
 		if(CPUMove.move in self.board.legal_moves):
-			time.sleep(.5)
-			print('CPU move: ', end='')
-			print(CPUMove.move)
 			self.board.push(CPUMove.move)
 			if(len(self.moveLog) == 0):
 				self.moveLog.append(str(CPUMove.move))
@@ -82,6 +78,7 @@ class chessEngine:
 				self.moveLog[len(self.moveLog)-1] = temp + ', '
 				self.moveLog.append(str(CPUMove.move))
 			self.whiteTurn = not self.whiteTurn
+
 			return CPUMove.move
 		else:
 			return CPUMove.move
