@@ -4,6 +4,8 @@ import chess.engine
 from ioDriver import IODriver
 from gameEngine import chessEngine
 
+iterations = 4
+
 # integration test of formatASCII and assignToArray with the chess library's board call
 def test_formatASCII():
     i = IODriver()
@@ -50,12 +52,13 @@ def test_formatASCII():
 def test_pushCPUMove():
     game2 = chessEngine('W', '1', '')
     auxGame = chessEngine('B', '1', '')
-    assert game2.pushPlayerMove(str(auxGame.pushCPUMove())) == True
-    assert auxGame.pushPlayerMove(str(game2.pushCPUMove())) == True
-    assert game2.pushPlayerMove(str(auxGame.pushCPUMove())) == True
-    assert auxGame.pushPlayerMove(str(game2.pushCPUMove())) == True
-    assert game2.pushPlayerMove(str(auxGame.pushCPUMove())) == True
-    assert auxGame.pushPlayerMove(str(game2.pushCPUMove())) == True
+
+    for i in range(0, iterations):
+        assert game2.pushPlayerMove(str(auxGame.pushCPUMove())) == True
+        assert auxGame.pushPlayerMove(str(game2.pushCPUMove())) == True
+    print()
+    print("test push CPU move board")
+    print(game2.board)
     game2.quitEngine()
     auxGame.quitEngine()
 
