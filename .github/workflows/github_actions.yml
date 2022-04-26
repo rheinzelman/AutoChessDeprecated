@@ -24,9 +24,7 @@ jobs:
       - name: Test with pytest
         run: |
           cd windows 
-          python -m pytest test_integration_tests.py
-          python -m pytest test_ioDriver.py
-          python -m pytest test_gameEngine.py
+          python -m pytest -s --cov
       - name: Create cx_Freeze Executable
         run: |
           cd windows
