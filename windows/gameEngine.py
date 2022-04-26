@@ -15,7 +15,7 @@ STARTING_FEN: leave blank for standard FEN, fill with custom FEN otherwise
 '''
 class chessEngine:
 	def __init__(self, GAMEMODE, CPU_DIFFICULTY, STARTING_FEN):
-
+		print(platform.system())
 		if('Linux' in platform.system()):
 			linux = True
 		else:
