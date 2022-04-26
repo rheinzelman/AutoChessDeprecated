@@ -44,3 +44,6 @@ jobs:
           file: Dockerfile
           push: true
           tags: ${{ secrets.USERNAME }}/autochessdeprecated:latest
+      - name: Create Executable with cx_Freeze
+        run: |
+          python3 setup.py build
