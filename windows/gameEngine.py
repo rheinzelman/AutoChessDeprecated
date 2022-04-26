@@ -30,7 +30,7 @@ class chessEngine:
 		self.GAMEMODE = GAMEMODE
 		self.resignFlag = False
 		if(linux):
-			self.engine = chess.engine.SimpleEngine.popen_uci('src_linux/stockfish')
+			self.engine = chess.engine.SimpleEngine.popen_uci('src_linux\stockfish')
 		else:
 			self.engine = chess.engine.SimpleEngine.popen_uci('src/stockfish')
 		self.engine.configure({"Skill Level": CPU_DIFFICULTY})
