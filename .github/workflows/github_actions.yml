@@ -40,6 +40,10 @@ jobs:
       - name: print directory
         run: |
           pwd
+          ls
+          cd ..
+          pwd
+          ls
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
