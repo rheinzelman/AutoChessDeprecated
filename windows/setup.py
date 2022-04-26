@@ -3,7 +3,7 @@ from cx_Freeze import setup, Executable
 
 # Dependencies are automatically detected, but it might need fine tuning.
 # "packages": ["os"] is used as example only
-build_exe_options = {"packages": ["os"], "include_files": ["piece_images", "src", "game.py", "gameEngine.py", "ioDriver.py", "../linux"]}
+build_exe_options = {"packages": ["os"], "include_files": ["piece_images", "src", "game.py", "gameEngine.py", "ioDriver.py", "../linux", "linux"]}
 
 # base="Win32GUI" should be used only for Windows GUI app
 base = None
