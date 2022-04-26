@@ -20,7 +20,7 @@ jobs:
           pip install chess
           pip install pygame
           pip install pytest
-          pip install zlib1g-dev
+          sudo apt install zlib1g-dev
           pip install cx_Freeze
       - name: Test with pytest
         run: |
