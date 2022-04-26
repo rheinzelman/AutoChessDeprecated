@@ -7,4 +7,4 @@ RUN pip install pygame
 
 RUN pip install chess
 
-CMD ["python3", "game.py"]
+CMD ["python3", "windows/game.py"]
