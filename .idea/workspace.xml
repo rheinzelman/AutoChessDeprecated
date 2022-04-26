@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c87725f-ed6a-477a-a2fe-8e1a1aa06166" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/windows/.coverage" beforeDir="false" afterPath="$PROJECT_DIR$/windows/.coverage" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/windows/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/windows/game.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
