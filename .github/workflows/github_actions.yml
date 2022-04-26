@@ -31,6 +31,7 @@ jobs:
     steps:
       - name: Create Executable with cx_Freeze
         run: |
+          cd ..
           ls
           pwd
           cd windows
