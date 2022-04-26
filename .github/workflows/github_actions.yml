@@ -20,6 +20,7 @@ jobs:
           pip install chess
           pip install pygame
           pip install pytest
+          pip install pytest-cov
           pip install cx_Freeze
       - name: Test with pytest
         run: |
