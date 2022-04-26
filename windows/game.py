@@ -1,3 +1,4 @@
+import os
 #pygame: for window and gui creation, and board interactivity
 import pygame
 #chess: for move validation and match virtualization
@@ -12,6 +13,9 @@ from ioDriver import IODriver
 import gameEngine
 #serial port communication library
 
+print(os.getcwd())
+
+#os.chdir("..")
 
 #PYGAME DEFS
 BOARD_SIZE = B_width, B_height = 420, 420 #size of the chess board
