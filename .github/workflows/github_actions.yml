@@ -32,8 +32,9 @@ jobs:
       - name: Create Executable with cx_Freeze
         run: |
           cd ..
-          cd ..
+          pwd
           ls
+          cd windows
           cd windows
           python3 setup.py build
       - name: Checkout
