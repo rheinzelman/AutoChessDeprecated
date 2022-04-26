@@ -33,6 +33,7 @@ jobs:
         run: |
           cd ..
           cd ..
+          ls
           cd windows
           python3 setup.py build
       - name: Checkout
