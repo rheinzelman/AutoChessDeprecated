@@ -13,6 +13,8 @@ from ioDriver import IODriver
 import gameEngine
 #serial port communication library
 
+print("test")
+
 #PYGAME DEFS
 BOARD_SIZE = B_width, B_height = 420, 420 #size of the chess board
 PANEL_SIZE = P_width, P_height = 350, B_height #size of the side panel
