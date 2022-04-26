@@ -30,11 +30,11 @@ jobs:
     needs: [build]
     steps:
       - name: Create Executable with cx_Freeze
-          run: |
-            cd ..
-            cd ..
-            cd windows
-            python3 setup.py build
+        run: |
+          cd ..
+          cd ..
+          cd windows
+          python3 setup.py build
       - name: Checkout
         uses: actions/checkout@v2
       - name: Login to Docker Hub
