@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         python-version: ["3.8"]
@@ -20,7 +20,6 @@ jobs:
           pip install chess
           pip install pygame
           pip install pytest
-          sudo apt install zlib1g-dev
           pip install cx_Freeze
       - name: Test with pytest
         run: |
