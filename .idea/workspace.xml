@@ -5,7 +5,90 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c87725f-ed6a-477a-a2fe-8e1a1aa06166" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/benchmark.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/benchmark.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/bitbase.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/bitbase.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/bitboard.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/bitboard.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/bitboard.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/endgame.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/endgame.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/endgame.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/evaluate.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/evaluate.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/evaluate.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/evaluate_nnue.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/half_ka_v2_hm.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/incbin/UNLICENCE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/material.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/material.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/material.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/misc.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/misc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/misc.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/movegen.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/movegen.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/movegen.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/movepick.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/movepick.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/movepick.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nn-13406b1dcbe0.nnue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nnue/evaluate_nnue.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nnue/evaluate_nnue.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nnue/features/half_ka_v2_hm.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nnue/features/half_ka_v2_hm.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nnue/layers/affine_transform.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nnue/layers/clipped_relu.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nnue/layers/input_slice.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nnue/nnue_accumulator.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nnue/nnue_architecture.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nnue/nnue_common.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/nnue/nnue_feature_transformer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/pawns.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/pawns.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/pawns.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/position.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/position.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/position.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/psqt.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/psqt.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/psqt.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/search.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/search.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/search.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/simd.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/stockfish" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/syzygy/tbprobe.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/syzygy/tbprobe.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/tbprobe.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/thread.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/thread.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/thread.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/thread_win32_osx.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/timeman.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/timeman.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/timeman.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/tt.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/tt.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/tt.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/tune.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/tune.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/tune.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/types.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/uci.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/uci.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/uci.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/ucioption.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/windows/src_linux/ucioption.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/github_actions.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/github_actions.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/windows/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/windows/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/gameEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/windows/gameEngine.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,13 +126,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/windows" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ray\AutoChessDeprecated\windows" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Ray\AutoChessDeprecated\windows" />
       <recent name="C:\Users\Ray\AutoChessDeprecated\.github\workflows" />
