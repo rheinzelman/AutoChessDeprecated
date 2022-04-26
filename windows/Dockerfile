@@ -1,5 +1,5 @@
 FROM python:3.9
-WORKDIR /usr/src/AutoChessDeprecated/windows
+WORKDIR /usr/src/AutoChessDeprecated
 
 COPY . .
 
