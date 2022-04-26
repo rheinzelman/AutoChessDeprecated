@@ -37,17 +37,10 @@ jobs:
           password: ${{ secrets.PASSWD }}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-      - name: print directory
-        run: |
-          pwd
-          ls
-          cd ..
-          pwd
-          ls
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           context: ./
-          file: windows/Dockerfile
+          file: Dockerfile
           push: true
           tags: ${{ secrets.USERNAME }}/autochessdeprecated:latest
