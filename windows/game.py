@@ -42,7 +42,7 @@ IMAGES = {
 
 #Gamemode variables
 GAMEMODE = 'W' # 'P' for pvp, 'W' for player vs black CPU, 'B' for player vs white CPU
-CPU_DIFFICULTY = '10' #sets the difficulty of the stockfish engine, can be 1-10
+CPU_DIFFICULTY = '10' #sets the difficulty of the src_linux engine, can be 1-10
 '''
 0: standard FEN 
 1: Legal move detection

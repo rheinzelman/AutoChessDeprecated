@@ -4,7 +4,91 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c87725f-ed6a-477a-a2fe-8e1a1aa06166" name="Changes" comment="" />
+    <list default="true" id="7c87725f-ed6a-477a-a2fe-8e1a1aa06166" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/windows/game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/gameEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/windows/gameEngine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/.depend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/benchmark.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/benchmark.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/bitbase.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/bitbase.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/bitboard.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/bitboard.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/bitboard.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/endgame.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/endgame.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/endgame.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/evaluate.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/evaluate.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/evaluate.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/evaluate_nnue.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/half_ka_v2_hm.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/incbin/UNLICENCE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/main.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/material.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/material.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/material.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/misc.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/misc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/misc.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/movegen.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/movegen.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/movegen.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/movepick.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/movepick.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/movepick.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nn-13406b1dcbe0.nnue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nnue/evaluate_nnue.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nnue/evaluate_nnue.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nnue/features/half_ka_v2_hm.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nnue/features/half_ka_v2_hm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nnue/layers/affine_transform.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nnue/layers/clipped_relu.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nnue/layers/input_slice.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nnue/nnue_accumulator.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nnue/nnue_architecture.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nnue/nnue_common.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/nnue/nnue_feature_transformer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/pawns.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/pawns.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/pawns.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/position.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/position.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/position.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/psqt.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/psqt.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/psqt.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/search.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/search.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/search.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/simd.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/stockfish" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/syzygy/tbprobe.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/syzygy/tbprobe.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/tbprobe.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/thread.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/thread.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/thread.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/thread_win32_osx.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/timeman.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/timeman.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/timeman.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/tt.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/tt.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/tt.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/tune.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/tune.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/tune.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/types.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/uci.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/uci.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/uci.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/ucioption.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/src_linux/ucioption.o" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

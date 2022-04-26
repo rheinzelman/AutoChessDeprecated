@@ -10,7 +10,7 @@ import platform
 
 '''
 GAMEMODE: currently does nothing other than help the chessEngine object keep track of whose turn it is for endgame purposes
-CPU_DIFFICULTY: edits stockfish's config file to change difficulty
+CPU_DIFFICULTY: edits src_linux's config file to change difficulty
 STARTING_FEN: leave blank for standard FEN, fill with custom FEN otherwise
 '''
 class chessEngine:
@@ -30,7 +30,7 @@ class chessEngine:
 		self.GAMEMODE = GAMEMODE
 		self.resignFlag = False
 		if(linux):
-			self.engine = chess.engine.SimpleEngine.popen_uci('src_linux/stockfish/')
+			self.engine = chess.engine.SimpleEngine.popen_uci('src_linux/stockfish')
 		else:
 			self.engine = chess.engine.SimpleEngine.popen_uci('src/stockfish')
 		self.engine.configure({"Skill Level": CPU_DIFFICULTY})
@@ -119,6 +119,6 @@ class chessEngine:
 		else:
 			return 'White'
 
-	#quit the stockfish engine so your computer doesn't explode
+	#quit the src_linux engine so your computer doesn't explode
 	def quitEngine(self):
 		self.engine.quit()
